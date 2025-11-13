@@ -341,7 +341,7 @@ const cssAllPackage = fs
 const checkForClasses = ["tna-template", "tna-template__body"];
 checkForClasses.forEach((cssClass) => {
   const escapedClass = cssClass.replace("-", "\\-");
-  const regExp = cssAllPackage.match(new RegExp(`.${escapedClass}\{`, "g"));
+  const regExp = cssAllPackage.match(new RegExp(`.${escapedClass}{`, "g"));
   if (regExp) {
     pass(
       `${cssClass.replace(/`{$/, "")} selector occurs ${regExp.length} time${

@@ -1,7 +1,5 @@
 const { globSync } = require("glob");
 const fs = require("fs");
-const path = require("path");
-const Diff = require("diff");
 const { renderNunjucks } = require("./lib/nunjucks");
 
 const componentsDirectory = "src/nationalarchives/components/";

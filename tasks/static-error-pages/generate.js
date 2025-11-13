@@ -44,6 +44,7 @@ const compiledCSSIE = fs
 <p>Try again in a few minutes.</p>`,
   },
 ].forEach((errorPage) => {
+  // eslint-disable-next-line no-unused-vars
   const { name, ...params } = errorPage;
   const html = renderNunjucks(errorPageNunjucks, {
     ...params,

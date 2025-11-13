@@ -18,10 +18,10 @@ Use the cookie banner from TNA Frontend in your service.
 
 | Attribute             | Purpose                                                                   | Default                  |
 | --------------------- | ------------------------------------------------------------------------- | ------------------------ |
-| `data-policies`       | Extra cookie policies in addition to "essential", "settings" and "usage"  | [none]                   |
+| `data-policies`       | Extra cookie policies in addition to "essential", "settings" and "usage"  | _none_                   |
 | `data-preferenceskey` | The cookie name to state that the user preferences have already been set  | `cookie_preferences_set` |
 | `data-policieskey`    | The cookie name for the policy preferences                                | `cookies_policy`         |
-| `data-domain`         | The domain to save cookies for                                            | [The current domain]     |
+| `data-domain`         | The domain to save cookies for                                            | _The current domain_     |
 | `data-path`           | The path that cookies are available within                                | `/`                      |
 | `data-insecure`       | Allow cookies to be sent in HTTP environments (designed for testing only) | `false`                  |
 
