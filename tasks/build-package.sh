@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO: NEEDED?
+
 set -e
 rm -fR package
 npm run compile:sass
