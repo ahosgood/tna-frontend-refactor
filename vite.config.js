@@ -1,3 +1,10 @@
+/**
+ * ======================================
+ * Base Vite configuration, used for both
+ * creating an npm package and developing
+ * and building Storybook
+ * ======================================
+ */
 /** @type {import('vite').UserConfig} */
 export default {
   root: "src",

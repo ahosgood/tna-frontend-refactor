@@ -1,5 +1,7 @@
+import "./storybook.scss";
+
 /** @type { import('@storybook/html-vite').Preview } */
-const preview = {
+export default {
   // parameters: {
   //   controls: {
   //     matchers: {
@@ -10,4 +12,11 @@ const preview = {
   // },
 };
 
-export default preview;
+document.documentElement.classList.add(
+  "tna-template",
+  "tna-template--blue-accent",
+);
+if (window.self !== window.top) {
+  document.documentElement.classList.add("tna-template--padded");
+}
+document.body.classList.add("tna-template__body");

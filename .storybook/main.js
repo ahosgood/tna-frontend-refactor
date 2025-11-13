@@ -1,23 +1,31 @@
 import { viteStaticCopy } from "vite-plugin-static-copy";
 
 /** @type { import('@storybook/html-vite').StorybookConfig } */
-const config = {
+export default {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: ["@storybook/addon-docs"],
   framework: {
     name: "@storybook/html-vite",
     options: {},
   },
-  async viteFinal(config) {
+  async viteFinal(config, { configType }) {
     const { mergeConfig } = await import("vite");
-    return mergeConfig(config, {
-      plugins: [
+
+    let plugins = [
+      viteStaticCopy({
+        targets: [
+          {
+            src: "node_modules/@fortawesome/fontawesome-free/webfonts/*.woff2",
+            dest: "assets/fonts",
+          },
+        ],
+      }),
+    ];
+
+    if (configType === "PRODUCTION") {
+      plugins.push(
         viteStaticCopy({
           targets: [
-            // {
-            //   src: "node_modules/@fortawesome/fontawesome-free/webfonts/*.woff2",
-            //   dest: "assets/assets/fonts",
-            // },
             {
               src: "src/**/*.njk",
               dest: ".",
@@ -25,8 +33,11 @@ const config = {
           ],
           structured: true,
         }),
-      ],
+      );
+    }
+
+    return mergeConfig(config, {
+      plugins,
     });
   },
 };
-export default config;

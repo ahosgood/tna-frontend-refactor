@@ -1,5 +1,5 @@
 import nunjucks from "nunjucks";
-import "./button.scss";
+// import "./button.scss";
 
 import Template from "./template.njk?raw";
 

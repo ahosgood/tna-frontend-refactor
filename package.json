@@ -12,13 +12,14 @@
     "build": "vite build --config vite-package.config.js"
   },
   "dependencies": {
-    "nunjucks": "^3.2.4"
+    "@fortawesome/fontawesome-free": "^7.1.0"
   },
   "devDependencies": {
-    "@storybook/addon-docs": "^10.0.4",
-    "@storybook/html-vite": "^10.0.4",
-    "sass": "^1.93.3",
-    "storybook": "^10.0.4",
+    "@storybook/addon-docs": "^10.0.7",
+    "@storybook/html-vite": "^10.0.7",
+    "nunjucks": "^3.2.4",
+    "sass": "^1.94.0",
+    "storybook": "^10.0.7",
     "vite-plugin-static-copy": "^3.1.4"
   },
   "exports": {
