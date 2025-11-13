@@ -16,9 +16,9 @@ export default {
     lib: {
       entry: "nationalarchives/all.mjs",
       name: "TNAFrontend",
-      fileName: (format, entryName) => `nationalarchives/${entryName}.min.js`,
+      fileName: (format, entryName) => `nationalarchives/${entryName}.js`,
       formats: ["iife"],
-      cssFileName: "nationalarchives/all.min",
+      // cssFileName: "nationalarchives/all",
     },
   },
 };

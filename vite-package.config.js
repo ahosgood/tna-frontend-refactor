@@ -26,6 +26,14 @@ const config = mergeConfig(baseConfig, {
           src: "../node_modules/@fortawesome/fontawesome-free/webfonts/*.woff2",
           dest: "nationalarchives/assets/fonts",
         },
+        {
+          src: "../package.json",
+          dest: ".",
+        },
+        {
+          src: "../README.md",
+          dest: ".",
+        },
         // {
         //   src: "**/*.njk",
         //   dest: ".",
