@@ -1,0 +1,129 @@
+@use "../variables/a11y";
+@use "colour";
+@use "borders";
+
+@mixin visually-hidden {
+  width: 1px !important;
+  height: 1px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  overflow: hidden !important;
+
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  z-index: -1 !important;
+
+  background-color: transparent !important;
+
+  border: 0 !important;
+
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+}
+
+%focus-outline {
+  outline: a11y.$focus-outline-outer-width #000 solid !important;
+  outline-offset: a11y.$focus-outline-inner-width !important;
+
+  box-shadow: 0 0 0 a11y.$focus-outline-inner-width
+    colour.brand-colour("yellow") !important;
+
+  transition:
+    outline-offset 0.1s,
+    box-shadow 0.1s;
+
+  .tna-template--dark-theme & {
+    outline-color: colour.brand-colour("yellow") !important;
+
+    box-shadow: 0 0 0 a11y.$focus-outline-inner-width #000 !important;
+  }
+
+  .tna-template--system-theme & {
+    @media (prefers-color-scheme: dark) {
+      outline-color: colour.brand-colour("yellow") !important;
+
+      box-shadow: 0 0 0 a11y.$focus-outline-inner-width #000 !important;
+    }
+  }
+}
+
+@mixin focus-outline {
+  @extend %focus-outline;
+}
+
+@mixin no-focus-outline {
+  outline: none !important;
+
+  box-shadow: none !important;
+}
+
+%active-outline {
+  outline: a11y.$focus-outline-active-outer-width #000 solid !important;
+  outline-offset: a11y.$focus-outline-active-inner-width !important;
+
+  box-shadow: 0 0 0 a11y.$focus-outline-active-inner-width
+    colour.brand-colour("yellow") !important;
+
+  transition: none;
+
+  .tna-template--dark-theme & {
+    outline-color: colour.brand-colour("yellow") !important;
+
+    box-shadow: 0 0 0 a11y.$focus-outline-active-inner-width #000 !important;
+  }
+
+  .tna-template--system-theme & {
+    @media (prefers-color-scheme: dark) {
+      outline-color: colour.brand-colour("yellow") !important;
+
+      box-shadow: 0 0 0 a11y.$focus-outline-active-inner-width #000 !important;
+    }
+  }
+}
+
+@mixin active-outline {
+  @extend %active-outline;
+}
+
+%faux-full-outline {
+  position: relative;
+}
+
+%faux-full-outline-anchor {
+  &::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+    z-index: 9;
+
+    @include borders.rounded-border;
+  }
+
+  &:focus,
+  &:active {
+    @include no-focus-outline;
+  }
+
+  &:focus {
+    &::before {
+      @include focus-outline;
+    }
+  }
+
+  &:active {
+    &::before {
+      @include active-outline;
+    }
+  }
+}
+
+@mixin faux-full-outline($anchor_selector) {
+  @extend %faux-full-outline;
+
+  #{$anchor_selector} {
+    @extend %faux-full-outline-anchor;
+  }
+}

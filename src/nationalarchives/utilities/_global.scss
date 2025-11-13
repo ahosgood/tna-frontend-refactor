@@ -1,0 +1,38 @@
+.tna-template {
+  /*
+   * ------------------------------------------
+   * A minimum page width of 320px is needed in
+   * order to meet the WCAG AA success criteria
+   * for 1.4.10 (Reflow)
+   * https://www.w3.org/WAI/WCAG21/Understanding/reflow.html
+   * ------------------------------------------
+   */
+  min-width: 320px;
+  width: 100%;
+  height: 100%;
+
+  /*
+   * ------------------------------------------
+   * Support ended with iOS 13 released on 19th
+   * September 2019. Deprecate in the future if
+   * iOS <13 share drops low enough.
+   * https://caniuse.com/mdn-css_properties_-webkit-overflow-scrolling
+   * ------------------------------------------
+   */
+  -webkit-overflow-scrolling: touch;
+}
+
+.tna-template__body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+
+  &:has(:is(.tna-global-header, .tna-header)):has(.tna-main):has(.tna-footer) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.tna-main {
+  flex: 1;
+}

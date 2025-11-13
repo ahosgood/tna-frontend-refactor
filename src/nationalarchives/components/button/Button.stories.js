@@ -1,0 +1,183 @@
+import nunjucks from "nunjucks";
+import "./button.scss";
+
+import Template from "./template.njk?raw";
+
+nunjucks.configure("src");
+
+export default {
+  title: "Components/Button",
+  tags: ["autodocs"],
+  render: ({ label, ...args }) =>
+    nunjucks.renderString(Template, { params: args }),
+  // nunjucks.render("nationalarchives/components/button/template.njk", { params: args }),
+  argTypes: {
+    text: { control: "text" },
+    html: { control: "text" },
+    href: { control: "text" },
+    title: { control: "text" },
+    icon: { control: "text" },
+    iconSvg: { control: "text" },
+    accent: { control: "boolean" },
+    small: { control: "boolean" },
+    plain: { control: "boolean" },
+    iconOnly: { control: "boolean" },
+    iconOnlyOnMobile: { control: "boolean" },
+    rightAlignIcon: { control: "boolean" },
+    buttonElement: { control: "boolean" },
+    buttonType: { control: "text" },
+    classes: { control: "text" },
+    attributes: { control: "object" },
+  },
+};
+
+export const Standard = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
+  args: {
+    text: "Button",
+    href: "#",
+    classes: "tna-button--demo",
+  },
+};
+
+export const Accent = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
+  args: {
+    text: "Button",
+    href: "#",
+    accent: true,
+    classes: "tna-button--demo",
+  },
+};
+
+export const Icon = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
+  args: {
+    text: "Explore the collection",
+    href: "#",
+    icon: "map-location-dot",
+    classes: "tna-button--demo",
+  },
+};
+
+export const RightAlignedIcon = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
+  args: {
+    text: "Search",
+    href: "#",
+    icon: "chevron-right",
+    rightAlignIcon: true,
+    classes: "tna-button--demo",
+  },
+};
+
+export const IconOnly = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
+  args: {
+    text: "Show as a list",
+    href: "#",
+    icon: "list",
+    iconOnly: true,
+    classes: "tna-button--demo",
+  },
+};
+
+export const Small = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
+  args: {
+    text: "Small button",
+    href: "#",
+    small: true,
+    classes: "tna-button--demo",
+  },
+};
+
+export const SmallWithIcon = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
+  args: {
+    text: "Explore the collection",
+    href: "#",
+    icon: "map-location-dot",
+    small: true,
+    classes: "tna-button--demo",
+  },
+};
+
+export const SmallIconOnly = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
+  args: {
+    text: "Explore the collection",
+    href: "#",
+    icon: "map-location-dot",
+    small: true,
+    iconOnly: true,
+    classes: "tna-button--demo",
+  },
+};
+
+export const Plain = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
+  args: {
+    text: "Plain button",
+    href: "#",
+    plain: true,
+    classes: "tna-button--demo",
+  },
+};
+
+export const SmallPlain = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
+  args: {
+    text: "Plain small button",
+    href: "#",
+    small: true,
+    plain: true,
+    classes: "tna-button--demo",
+  },
+};
+
+export const SmallPlainIcon = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
+  args: {
+    text: "Plain small button",
+    href: "#",
+    icon: "map-location-dot",
+    small: true,
+    plain: true,
+    classes: "tna-button--demo",
+  },
+};
+
+export const ButtonElement = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
+  args: {
+    text: "Button element",
+    href: "#",
+    buttonElement: true,
+    classes: "tna-button--demo",
+  },
+};

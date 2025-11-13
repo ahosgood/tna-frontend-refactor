@@ -1,0 +1,42 @@
+@use "../../tools/colour";
+@use "../../tools/spacing";
+@use "../../tools/typography";
+
+.tna-form-item {
+  @include spacing.space-above;
+
+  &__header {
+  }
+
+  &__label {
+    display: block;
+  }
+
+  &__hint {
+    margin-top: spacing.space(0.125);
+
+    @include typography.font-size(16);
+    @include colour.colour-font("font-light");
+  }
+
+  &__error {
+    margin-top: spacing.space(0.25);
+
+    @include colour.colour-font("form-error-text");
+    @include typography.main-font-weight-bold;
+  }
+
+  &__body {
+    margin-top: spacing.space(0.5);
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &--error {
+    padding-left: spacing.space(1);
+
+    @include colour.thick-keyline-error(left);
+  }
+}

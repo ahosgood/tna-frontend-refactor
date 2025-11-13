@@ -1,0 +1,102 @@
+@use "sass:math";
+
+/*
+ * ------------------------------------------
+ * The typefaces, sizes and spacings that are
+ * defined in this file have been selected to
+ * ensure 100% match with the latest National
+ * Archives brand guidelines - avoid changing
+ * or overwriting any of these values without
+ * signing off with the Digital Services team
+ * first
+ * ------------------------------------------
+ */
+
+$relative-1rem-px: 16; // 16px = 1rem
+
+/*
+ * ------------------------------------------
+ * When true, use the included font files for
+ * Open Sans and Roboto Mono, rather than the
+ * versions hosted by Google Fonts
+ * ------------------------------------------
+ */
+$use-local-fonts: false !default;
+
+$body-font-size-px: 19 !default;
+$body-font-size-px-medium: 18 !default;
+$body-font-size-px-mobile: 17 !default;
+$body-line-height: 1.75 !default;
+
+$interactable-text-decoration-offset: 0.125em !default;
+$interactable-text-decoration-thickness: #{math.div(1.5, $relative-1rem-px)}rem !default;
+$interactive-text-decoration-thickness: #{math.div(4, $relative-1rem-px)}rem !default;
+
+$main-font-family-name: "Open Sans" !default;
+$main-font-family:
+  #{$main-font-family-name},
+  sans-serif;
+$main-font-weight: 400 !default;
+$main-font-weight-medium: 600 !default;
+$main-font-weight-bold: 700 !default;
+$main-font-file: "OpenSans-Regular.ttf" !default;
+$main-font-file-medium: "OpenSans-SemiBold.ttf" !default;
+$main-font-file-bold: "OpenSans-Bold.ttf" !default;
+
+/*
+ * ------------------------------------------
+ * To use Supria Sans Condensed (which is the
+ * approved heading typeface for The National
+ * Archives), you need to obtain a licence to
+ * properly embed the CSS files with the font
+ * definitions in your service - check with a
+ * member of the Digital Services team on how
+ * to get a licence
+ * ------------------------------------------
+ */
+$heading-font-family-name: "supria-sans-condensed" !default;
+$heading-font-family:
+  #{$heading-font-family-name},
+  "Arial Narrow",
+  sans-serif;
+$heading-font-weight: 500 !default;
+
+/*
+ * ------------------------------------------
+ * The detail font should be a monospace font
+ * and is used for chips, supertitles as well
+ * as the date search component
+ * ------------------------------------------
+ */
+$detail-font-family-name: "Roboto Mono" !default;
+$detail-font-family:
+  #{$detail-font-family-name},
+  monospace;
+$detail-font-weight: 400 !default;
+$detail-font-weight-bold: 500 !default;
+$detail-font-file: "RobotoMono-Regular.ttf" !default;
+$detail-font-file-bold: "RobotoMono-Medium.ttf" !default;
+
+$heading-xl-font-size-default: 64 !default;
+$heading-xl-font-size-medium: 48 !default;
+$heading-xl-font-size-small: 36 !default;
+$heading-xl-font-size-tiny: $heading-xl-font-size-small !default;
+$heading-xl-line-height: 1.1 !default;
+
+$heading-l-font-size-default: 36 !default;
+$heading-l-font-size-medium: 32 !default;
+$heading-l-font-size-small: 29 !default;
+$heading-l-font-size-tiny: $heading-l-font-size-small !default;
+$heading-l-line-height: 1.15 !default;
+
+$heading-m-font-size-default: 22 !default;
+$heading-m-font-size-medium: $heading-m-font-size-default !default;
+$heading-m-font-size-small: 21 !default;
+$heading-m-font-size-tiny: $heading-m-font-size-small !default;
+$heading-m-line-height: 1.4 !default;
+
+$heading-s-font-size-default: 19 !default;
+$heading-s-font-size-medium: $heading-s-font-size-default !default;
+$heading-s-font-size-small: $heading-s-font-size-default !default;
+$heading-s-font-size-tiny: $heading-s-font-size-default !default;
+$heading-s-line-height: 1.5 !default;

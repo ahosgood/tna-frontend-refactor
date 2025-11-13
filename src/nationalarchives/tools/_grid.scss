@@ -1,0 +1,104 @@
+@use "sass:math";
+@use "../variables/grid";
+@use "spacing";
+
+@function gutter-width() {
+  @return spacing.space(grid.$gutter-width);
+}
+
+@function gutter-width-half() {
+  @return spacing.space(math.div(grid.$gutter-width, 2));
+}
+
+@function gutter-width-double() {
+  @return spacing.space(grid.$gutter-width * 2);
+}
+
+@function gutter-width-tiny() {
+  @return spacing.space(grid.$gutter-width-tiny);
+}
+
+@function gutter-width-tiny-half() {
+  @return spacing.space(math.div(grid.$gutter-width-tiny, 2));
+}
+
+@function gutter-width-tiny-double() {
+  @return spacing.space(grid.$gutter-width-tiny * 2);
+}
+
+@mixin columns-generator($count, $suffix: "") {
+  @if $suffix != "" {
+    $suffix: "-" + $suffix;
+  }
+
+  .tna-column {
+    &--full#{$suffix} {
+      width: 100%;
+      flex: none;
+    }
+
+    @for $i from 1 through $count - 1 {
+      $simplest-fraction-found: false;
+
+      @for $j from math.div($count, 2) through 1 {
+        @if (
+          $count % $j == 0 and $i % $j == 0 and $simplest-fraction-found != true
+        ) {
+          &--width-#{math.div($i, $j)}-#{math.div($count, $j)}#{$suffix} {
+            width: math.div(100%, $count) * $i;
+            flex: none;
+          }
+
+          &--margin-right-#{math.div($i, $j)}-#{math.div($count, $j)}#{$suffix} {
+            margin-right: math.div(100%, $count) * $i;
+          }
+
+          &--margin-left-#{math.div($i, $j)}-#{math.div($count, $j)}#{$suffix} {
+            margin-left: math.div(100%, $count) * $i;
+          }
+
+          $simplest-fraction-found: true;
+        }
+      }
+
+      @if $simplest-fraction-found != true {
+        &--width-#{$i}-#{$count}#{$suffix} {
+          width: math.div(100%, $count) * $i;
+          flex: none;
+        }
+
+        &--margin-right-#{$i}-#{$count}#{$suffix} {
+          margin-right: math.div(100%, $count) * $i;
+        }
+
+        &--margin-left-#{$i}-#{$count}#{$suffix} {
+          margin-left: math.div(100%, $count) * $i;
+        }
+      }
+    }
+
+    @if $suffix != "" {
+      &--no-margin-right#{$suffix} {
+        margin-right: 0;
+      }
+
+      &--no-margin-left#{$suffix} {
+        margin-left: 0;
+      }
+    }
+
+    @for $i from 1 through 3 {
+      &--flex-#{$i}#{$suffix} {
+        width: auto;
+
+        flex: $i 0;
+      }
+    }
+
+    @for $i from 1 through 4 {
+      &--order-#{$i}#{$suffix} {
+        order: $i;
+      }
+    }
+  }
+}

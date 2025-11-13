@@ -1,0 +1,24 @@
+@use "sass:map";
+
+$spacing-unit-px: 16 !default;
+
+$spacing: (
+  "xs": 0.5,
+  "s": 1,
+  "m": 2,
+  "l": 3,
+  "xl": 5,
+  "xxl": 8,
+) !default;
+
+$spacing-mobile: map.merge(
+  $spacing,
+  (
+    "xs": 0.5,
+    "s": 0.75,
+    "m": 1.5,
+    "l": 2,
+    "xl": 3,
+    "xxl": 5,
+  )
+) !default;
