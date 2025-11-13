@@ -1,0 +1,126 @@
+[
+  {
+    "name": "src",
+    "type": "string",
+    "required": true,
+    "description": ""
+  },
+  {
+    "name": "alt",
+    "type": "string",
+    "required": true,
+    "description": ""
+  },
+  {
+    "name": "width",
+    "type": "number",
+    "required": true,
+    "description": ""
+  },
+  {
+    "name": "height",
+    "type": "number",
+    "required": true,
+    "description": ""
+  },
+  {
+    "name": "sources",
+    "type": "array",
+    "required": false,
+    "description": "",
+    "params": [
+      {
+        "name": "src",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "media",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "caption",
+    "type": "string",
+    "required": false,
+    "description": ""
+  },
+  {
+    "name": "informationLabelOpen",
+    "type": "string",
+    "required": false,
+    "description": ""
+  },
+  {
+    "name": "informationLabelClose",
+    "type": "string",
+    "required": false,
+    "description": ""
+  },
+  {
+    "name": "informationItemHeadingLevel",
+    "type": "number",
+    "required": false,
+    "description": "The heading level which represents an element from `<h1>` through to `<h6>` for each of the information items. Required if `information` is set."
+  },
+  {
+    "name": "information",
+    "type": "array",
+    "required": false,
+    "description": "",
+    "params": [
+      {
+        "name": "id",
+        "type": "string",
+        "required": true,
+        "description": "A unique ID for the picture information item."
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "body",
+        "type": "string",
+        "required": true,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "classes",
+    "type": "string",
+    "required": false,
+    "description": "Classes to add to the picture."
+  },
+  {
+    "name": "attributes",
+    "type": "object",
+    "required": false,
+    "description": "HTML attributes (for example data attributes) to add to the picture."
+  }
+]

@@ -18,7 +18,6 @@ export default {
       name: "TNAFrontend",
       fileName: (format, entryName) => `nationalarchives/${entryName}.js`,
       formats: ["iife"],
-      // cssFileName: "nationalarchives/all",
     },
   },
 };

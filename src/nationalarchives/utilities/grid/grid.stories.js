@@ -2,7 +2,7 @@ import Template from "./template.njk?raw";
 import nunjucks from "nunjucks";
 import macroOptions from "./macro-options.json";
 
-nunjucks.configure(import.meta.env.PROD ? "" : "src");
+nunjucks.configure("src");
 
 export default {
   title: "Utilities/Grid",

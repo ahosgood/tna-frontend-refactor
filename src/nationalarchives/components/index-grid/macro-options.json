@@ -1,0 +1,161 @@
+[
+  {
+    "name": "supertitle",
+    "type": "string",
+    "required": false,
+    "description": "The smaller title to display above the main index grid title."
+  },
+  {
+    "name": "title",
+    "type": "string",
+    "required": true,
+    "description": "The main title of the index grid."
+  },
+  {
+    "name": "headingLevel",
+    "type": "number",
+    "required": true,
+    "description": "The heading level which represents an element from `<h1>` through to `<h6>`. Set to `0` to visually hide the title."
+  },
+  {
+    "name": "headingSize",
+    "type": "string",
+    "required": false,
+    "default": "m",
+    "description": "The physical size of the index grid title (`xl`, `l`, `m` or `s`)."
+  },
+  {
+    "name": "href",
+    "type": "string",
+    "required": false,
+    "description": "A URL to use as a link in the grids heading."
+  },
+  {
+    "name": "hrefClasses",
+    "type": "string",
+    "required": false,
+    "description": "Classes to add to the elements of the index grid that use `href`."
+  },
+  {
+    "name": "hrefAttributes",
+    "type": "object",
+    "required": false,
+    "description": "HTML attributes (for example data attributes) to add to the elements of the index grid that use `href`."
+  },
+  {
+    "name": "body",
+    "type": "string",
+    "required": false,
+    "description": "The HTML for the main body of the index grid. Not displayed if `text` is set."
+  },
+  {
+    "name": "text",
+    "type": "string",
+    "required": false,
+    "description": "The text for the index grid which will be inserted into a `<p>` element. Overwrites `body` if it is set."
+  },
+  {
+    "name": "items",
+    "type": "array",
+    "required": true,
+    "description": "",
+    "params": [
+      {
+        "name": "href",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "src",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "alt",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "subtitle",
+        "type": "string",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "lazyImages",
+    "type": "boolean",
+    "required": false,
+    "description": "If `true`, make the images a lazily-loaded."
+  },
+  {
+    "name": "columns",
+    "type": "string",
+    "required": true,
+    "description": ""
+  },
+  {
+    "name": "columnsMedium",
+    "type": "string",
+    "required": false,
+    "description": ""
+  },
+  {
+    "name": "columnsSmall",
+    "type": "string",
+    "required": false,
+    "description": ""
+  },
+  {
+    "name": "columnsTiny",
+    "type": "string",
+    "required": false,
+    "description": ""
+  },
+  {
+    "name": "plainSupertitle",
+    "type": "boolean",
+    "required": false,
+    "description": "Use a plain supertitle, removing the accented background colour."
+  },
+  {
+    "name": "classes",
+    "type": "string",
+    "required": false,
+    "description": "Classes to add to the container."
+  },
+  {
+    "name": "attributes",
+    "type": "object",
+    "required": false,
+    "description": "HTML attributes (for example data attributes) to add to the container."
+  }
+]

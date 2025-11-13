@@ -1,0 +1,84 @@
+@use "../../tools/a11y";
+@use "../../tools/borders";
+@use "../../tools/colour";
+@use "../../tools/media";
+@use "../../tools/spacing";
+@use "../../tools/typography";
+
+.tna-files-list {
+  @include spacing.space-above;
+  padding: spacing.space(1);
+
+  @include colour.tint;
+
+  @include borders.rounded-border;
+
+  &__items {
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: spacing.space(1);
+    flex: 1;
+
+    list-style: none;
+
+    @include colour.colour-border("keyline", 0, solid);
+    border-left-width: 1px;
+  }
+
+  &__item {
+    padding: 0 0 0 spacing.space(0.5);
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: spacing.space(0.25) spacing.space(1);
+
+    position: relative;
+  }
+
+  &__link {
+  }
+
+  &__item-title {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  &__item-icon {
+    margin: spacing.space(0.5) 0;
+
+    grid-column: 1;
+    grid-row: 1/3;
+    @include typography.font-size(36);
+  }
+
+  &__item-body {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  &__item-meta {
+    padding-bottom: spacing.space(0.25);
+  }
+
+  &__item-description {
+    margin-top: 0;
+
+    @include typography.font-size(16);
+  }
+
+  &--full-click {
+  }
+
+  @include a11y.faux-full-outline("&--full-click &__link");
+
+  &--full-click &__link {
+    &:hover {
+      &::before {
+        @include colour.thick-keyline(left);
+      }
+    }
+  }
+}

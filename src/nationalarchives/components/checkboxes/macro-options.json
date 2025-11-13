@@ -1,0 +1,121 @@
+[
+  {
+    "name": "label",
+    "type": "string",
+    "required": false,
+    "description": "The label for the checkboxes field. Required if there are multiple checkboxes. Optional for only one checkbox."
+  },
+  {
+    "name": "headingLevel",
+    "type": "number",
+    "required": false,
+    "description": "The heading level which represents an element from `<h1>` through to `<h6>`. Leave blank or set to `0` to use a plain `<label>` element with no heading."
+  },
+  {
+    "name": "headingSize",
+    "type": "string",
+    "required": false,
+    "description": "The physical size of the checkboxes title (`xl`, `l`, `m`, `s` or `xs`).",
+    "default": "m"
+  },
+  {
+    "name": "id",
+    "type": "string",
+    "required": true,
+    "description": "A unique ID for the checkboxes component."
+  },
+  {
+    "name": "name",
+    "type": "string",
+    "required": true,
+    "description": "The name of the form field."
+  },
+  {
+    "name": "hint",
+    "type": "string",
+    "required": false,
+    "description": "An optional hint to display above the form field."
+  },
+  {
+    "name": "error",
+    "type": "object",
+    "required": false,
+    "description": "If set, the details of any errors.",
+    "params": [
+      {
+        "name": "text",
+        "type": "string",
+        "required": true,
+        "description": "The error text to display."
+      }
+    ]
+  },
+  {
+    "name": "items",
+    "type": "array",
+    "required": true,
+    "description": "A list of checkbox items to render.",
+    "params": [
+      {
+        "name": "text",
+        "type": "string",
+        "required": true,
+        "description": "The label of the checkbox item."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": true,
+        "description": "The form field value."
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "description": "The name of the form field item. If set, this will override the main `name` property."
+      },
+      {
+        "name": "checked",
+        "type": "boolean",
+        "required": false,
+        "description": "If `true`, the checkbox will be checked."
+      }
+    ]
+  },
+  {
+    "name": "small",
+    "type": "boolean",
+    "required": false,
+    "description": "If `true`, show smaller checkboxes."
+  },
+  {
+    "name": "inline",
+    "type": "boolean",
+    "required": false,
+    "description": "If `true`, show the checkboxes inline rather than vertical."
+  },
+  {
+    "name": "formItemClasses",
+    "type": "string",
+    "required": false,
+    "description": "Classes to add to the checkboxes form group."
+  },
+  {
+    "name": "formItemAttributes",
+    "type": "object",
+    "required": false,
+    "description": "HTML attributes (for example data attributes) to add to the checkboxes form group."
+  },
+  {
+    "name": "classes",
+    "type": "string",
+    "required": false,
+    "description": "Classes to add to the checkbox elements."
+  },
+  {
+    "name": "attributes",
+    "type": "object",
+    "required": false,
+    "description": "HTML attributes (for example data attributes) to add to the checkbox elements."
+  }
+]

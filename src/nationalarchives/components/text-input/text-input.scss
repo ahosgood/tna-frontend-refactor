@@ -1,0 +1,65 @@
+@use "../../variables/forms" as formsVars;
+@use "../../tools/borders";
+@use "../../tools/colour";
+@use "../../tools/spacing";
+
+.tna-text-input {
+  padding: 0 spacing.space(0.375);
+
+  display: block;
+  box-sizing: border-box;
+
+  line-height: 2rem;
+
+  @include colour.colour-input;
+
+  @include borders.rounded-border;
+
+  &,
+  &-wrapper {
+    width: 100%;
+  }
+
+  .tna-form-item--error & {
+    @include colour.colour-border("form-error-border");
+  }
+
+  &--xs {
+    max-width: 5rem;
+  }
+
+  &--s {
+    max-width: 10rem;
+  }
+
+  &--m {
+    max-width: 20rem;
+  }
+
+  &--l {
+    max-width: 40rem;
+  }
+
+  &--xl {
+    max-width: 80rem;
+  }
+
+  &-wrapper & {
+    flex: 1;
+  }
+
+  &-wrapper {
+    display: flex;
+    align-items: stretch;
+    gap: formsVars.$form-field-border-width;
+
+    .tna-button {
+      white-space: nowrap;
+
+      svg {
+        width: 28px;
+        margin: 0;
+      }
+    }
+  }
+}

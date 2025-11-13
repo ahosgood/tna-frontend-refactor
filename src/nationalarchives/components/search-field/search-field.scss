@@ -1,0 +1,32 @@
+@use "../../variables/borders" as bordersVars;
+@use "../../variables/forms" as formsVars;
+@use "../../tools/borders";
+@use "../../tools/colour";
+@use "../../tools/spacing";
+
+.tna-search-field {
+  align-self: stretch;
+
+  display: flex;
+  gap: formsVars.$form-field-border-width;
+
+  &__input {
+    min-width: 8rem;
+    width: 0;
+    padding: 0 spacing.space(0.375);
+
+    display: block;
+
+    line-height: 2rem;
+
+    flex: 1;
+
+    @include colour.colour-input;
+    @include borders.rounded-border;
+  }
+
+  &__button {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}

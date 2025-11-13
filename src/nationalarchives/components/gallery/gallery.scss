@@ -1,0 +1,340 @@
+@use "../../variables/borders" as bordersVars;
+@use "../../tools/a11y";
+@use "../../tools/borders";
+@use "../../tools/colour";
+@use "../../tools/media";
+@use "../../tools/spacing";
+@use "../../tools/typography";
+
+.tna-gallery {
+  @include spacing.space-above;
+
+  display: grid;
+  grid-template: min-content min-content 1fr / 2fr 1fr;
+  gap: 0 spacing.space(1);
+
+  border-radius: 0.1px;
+
+  &__header {
+    padding-bottom: spacing.space(1);
+
+    grid-column: 1 / 3;
+    grid-row: 1;
+
+    display: flex;
+    gap: spacing.space(2);
+  }
+
+  &__header-inner {
+    flex: 1;
+  }
+
+  &__items,
+  &__navigation-buttons {
+    grid-column: 1 / 3;
+    grid-row: 2;
+  }
+
+  &__items {
+    position: relative;
+    z-index: 1;
+
+    border-radius: 0.1px;
+
+    .tna-template--clicked &:focus {
+      @include a11y.no-focus-outline;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+  }
+
+  &__item-header {
+    padding: 0 spacing.space(1) spacing.space(1);
+
+    line-height: 1;
+    text-align: center;
+
+    @include typography.main-font-weight-bold;
+    @include typography.font-size(16);
+  }
+
+  &__item-figure {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: spacing.space(1);
+  }
+
+  &__item-figure-inner {
+    width: 100%;
+
+    position: relative;
+
+    @include colour.contrast;
+
+    @include borders.rounded-border;
+  }
+
+  &__item-image {
+    margin: 0 auto;
+  }
+
+  &__item-description {
+    margin-bottom: spacing.space(1);
+    padding: spacing.space(0.5) spacing.space(1);
+
+    align-self: flex-start;
+
+    @include colour.thick-keyline-dark(left);
+  }
+
+  &__navigation-buttons {
+    width: 100%;
+    max-height: 50vh;
+    aspect-ratio: 3 / 2;
+
+    position: relative;
+    top: spacing.space(2);
+    z-index: 2;
+
+    pointer-events: none;
+
+    .tna-template--touched & {
+      display: none;
+    }
+  }
+
+  &__navigation-button {
+    width: 35%;
+
+    display: flex;
+    align-items: center;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    background: transparent;
+
+    border: none;
+    border-radius: 0.1px;
+
+    opacity: 0;
+
+    cursor: pointer;
+    pointer-events: auto;
+    @include typography.main-font-weight-bold;
+
+    &:hover,
+    &:focus-visible {
+      opacity: 1;
+    }
+  }
+
+  &__navigation-prev {
+    padding-left: 1rem;
+
+    justify-content: flex-start;
+
+    left: 0;
+  }
+
+  &__navigation-next {
+    padding-right: 1rem;
+
+    justify-content: flex-end;
+
+    right: 0;
+  }
+
+  &__navigation-button-label {
+    @include colour.accent;
+
+    &,
+    &:hover {
+      @include colour.colour-font("button-accented-text");
+      @include colour.colour-background("button-accented-background");
+      @include colour.colour-border("button-accented-background");
+    }
+  }
+
+  &__navigation-button-icon {
+    content: "";
+
+    width: 0.75rem;
+    height: 0.75rem;
+
+    display: block;
+    flex: none;
+
+    @include colour.colour-border("font-dark", 4px, solid, top);
+    @include colour.colour-border("font-dark", 4px, solid, right);
+
+    transform-origin: 50% 50%;
+  }
+
+  &__navigation-prev &__navigation-button-icon {
+    transform: rotate(-135deg);
+  }
+
+  &__navigation-next &__navigation-button-icon {
+    transform: rotate(45deg);
+  }
+
+  &__navigation {
+    max-height: 40rem;
+    max-height: clamp(15rem, calc(100vh - #{spacing.space(2)}), 40rem);
+    padding: spacing.space(1);
+
+    grid-column: 1 / 3;
+    grid-row: 3;
+
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: min-content;
+    gap: spacing.space(1);
+
+    overflow: auto;
+  }
+
+  &__navigation-item {
+    min-width: 0;
+    min-height: 0;
+    aspect-ratio: 1;
+
+    position: relative;
+
+    border: none;
+    @include borders.rounded-border;
+
+    cursor: pointer;
+
+    @include colour.contrast;
+
+    @include colour.image-loader-background;
+
+    &:hover {
+      &::after {
+        content: "";
+
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+
+        @include colour.thick-keyline-accent;
+      }
+    }
+
+    &[aria-current="true"] {
+      @include colour.accent;
+
+      &::after {
+        content: "";
+
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+
+        @include colour.thick-keyline-brand("", "black");
+      }
+    }
+  }
+
+  &__navigation-item-image {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+  }
+
+  &__navigation-item-label {
+    padding: spacing.space(0.25) spacing.space(0.75);
+
+    display: inline-block;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+
+    text-transform: capitalize;
+
+    @include colour.colour-font("font-dark");
+    @include typography.font-size(24);
+    @include typography.main-font-weight-bold;
+
+    @include colour.colour-background("background");
+
+    border-radius: 0 0 bordersVars.$rounded-border-radius 0;
+  }
+
+  &--interactive &__item-figure-inner {
+    max-height: 50vh;
+    aspect-ratio: 3 / 2;
+  }
+
+  &--interactive &__item-image {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    object-fit: contain;
+  }
+
+  @include media.on-medium {
+    &__navigation {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @include media.on-mobile {
+    &__navigation {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @include media.on-tiny {
+    &__navigation-item-label {
+      @include typography.font-size(18);
+    }
+  }
+
+  &--bounded {
+    @include borders.rounded-border;
+    @include colour.tint;
+  }
+
+  &--bounded &__header {
+    padding: spacing.space(1);
+  }
+
+  &--bounded &__navigation-buttons {
+    top: spacing.space(3);
+  }
+
+  &--bounded &__item-header {
+    padding-top: spacing.space(1);
+  }
+
+  &--bounded &__item-figure-inner {
+    border-radius: 0.1px;
+  }
+
+  &--bounded &__item-description {
+    margin-right: spacing.space(1);
+    margin-left: spacing.space(1);
+  }
+
+  &__items--hide-item-titles &__item &__item-header {
+    display: none;
+  }
+}

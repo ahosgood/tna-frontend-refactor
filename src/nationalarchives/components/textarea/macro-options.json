@@ -1,0 +1,117 @@
+[
+  {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "description": "The label for the textarea field."
+  },
+  {
+    "name": "headingLevel",
+    "type": "number",
+    "required": false,
+    "description": "The heading level which represents an element from `<h1>` through to `<h6>`. Leave blank or set to `0` to use a plain `<label>` element with no heading."
+  },
+  {
+    "name": "headingSize",
+    "type": "string",
+    "required": false,
+    "description": "The physical size of the textarea title (`xl`, `l`, `m`, `s` or `xs`).",
+    "default": "m"
+  },
+  {
+    "name": "id",
+    "type": "string",
+    "required": true,
+    "description": "A unique ID for the textarea component."
+  },
+  {
+    "name": "name",
+    "type": "string",
+    "required": true,
+    "description": "The name of the form field."
+  },
+  {
+    "name": "hint",
+    "type": "string",
+    "required": false,
+    "description": "An optional hint to display above the form field."
+  },
+  {
+    "name": "value",
+    "type": "string",
+    "required": false,
+    "description": "The form field value."
+  },
+  {
+    "name": "error",
+    "type": "object",
+    "required": false,
+    "description": "If set, the details of any errors.",
+    "params": [
+      {
+        "name": "text",
+        "type": "string",
+        "required": true,
+        "description": "The error text to display."
+      }
+    ]
+  },
+  {
+    "name": "spellcheck",
+    "type": "boolean",
+    "required": false,
+    "default": false,
+    "description": ""
+  },
+  {
+    "name": "autocapitalize",
+    "type": "string",
+    "required": false,
+    "default": "off",
+    "description": ""
+  },
+  {
+    "name": "autocorrect",
+    "type": "boolean",
+    "required": false,
+    "default": "off",
+    "description": ""
+  },
+  {
+    "name": "size",
+    "type": "string",
+    "required": false,
+    "description": ""
+  },
+  {
+    "name": "rows",
+    "type": "number",
+    "required": false,
+    "default": 5,
+    "description": ""
+  },
+  {
+    "name": "formItemClasses",
+    "type": "string",
+    "required": false,
+    "description": "Classes to add to the textarea form group."
+  },
+  {
+    "name": "formItemAttributes",
+    "type": "object",
+    "required": false,
+    "description": "HTML attributes (for example data attributes) to add to the textarea form group."
+  },
+  {
+    "name": "classes",
+    "type": "string",
+    "required": false,
+    "description": "Classes to add to the textarea."
+  },
+  {
+    "name": "attributes",
+    "type": "object",
+    "required": false,
+    "description": "HTML attributes (for example data attributes) to add to the textarea."
+  }
+]

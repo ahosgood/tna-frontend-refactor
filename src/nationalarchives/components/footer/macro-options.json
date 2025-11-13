@@ -1,0 +1,163 @@
+[
+  {
+    "name": "defaultContent",
+    "type": "boolean",
+    "required": false,
+    "description": "If `true`, use the default content for the footer."
+  },
+  {
+    "name": "defaultContentBaseURL",
+    "type": "string",
+    "required": false,
+    "description": "Set the base URL for the `defaultContent` links. Do not include a trailing slash."
+  },
+  {
+    "name": "meta",
+    "type": "string",
+    "required": false,
+    "description": "An optional piece of text to display in the footer between the address and social media icons."
+  },
+  {
+    "name": "social",
+    "type": "object",
+    "required": false,
+    "description": "An optional object of social media.",
+    "params": [
+      {
+        "name": "items",
+        "type": "array",
+        "required": false,
+        "description": "A list of social media items.",
+        "params": [
+          {
+            "name": "href",
+            "type": "string",
+            "required": true,
+            "description": "The URL for the social media link."
+          },
+          {
+            "name": "icon",
+            "type": "string",
+            "required": true,
+            "description": "An icon to use for the social media link. Options are `twitter`, `youtube`, `facebook`, `flickr`, `instagram`, `rss` and `github`."
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "required": true,
+            "description": "A title to use for the social media link."
+          },
+          {
+            "name": "shortTitle",
+            "type": "string",
+            "required": false,
+            "description": "A shorter title to display next to the social media icon. If not specified, the full title will be used."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "navigation",
+    "type": "array",
+    "required": false,
+    "description": "An optional list of navigation sections to display in the main body of the footer.",
+    "params": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": "The title of the navigation section."
+      },
+      {
+        "name": "hideTitle",
+        "type": "boolean",
+        "required": false,
+        "description": "If `true`, hide the title of the navigation section."
+      },
+      {
+        "name": "items",
+        "type": "array",
+        "required": true,
+        "description": "A list of items in the navigation section.",
+        "params": [
+          {
+            "name": "text",
+            "type": "string",
+            "required": true,
+            "description": "The text to display for the navigation item."
+          },
+          {
+            "name": "href",
+            "type": "string",
+            "required": true,
+            "description": "The URL of the navigation item."
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "required": false,
+            "description": "An optional title for the navigation item, used for accessibility."
+          },
+          {
+            "name": "newTab",
+            "type": "boolean",
+            "required": false,
+            "description": "If `true`, open the link in a new tab."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "legal",
+    "type": "array",
+    "required": false,
+    "description": "A list of 'legal' links to display in the footer such as the cookie page, accessibility statement, privacy policy and terms and conditions.",
+    "params": [
+      {
+        "name": "text",
+        "type": "string",
+        "required": true,
+        "description": "The text of the legal link item."
+      },
+      {
+        "name": "href",
+        "type": "string",
+        "required": true,
+        "description": " The URL of the legal link item."
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": false,
+        "description": "An optional title for the item, used for accessibility."
+      }
+    ]
+  },
+  {
+    "name": "themeSelector",
+    "type": "boolean",
+    "required": false,
+    "description": "Enable the theme selector (once settings cookies have been accepted)."
+  },
+  {
+    "name": "currentTheme",
+    "type": "string",
+    "required": false,
+    "default": "light",
+    "description": "The current theme which has been selected. Options are `system`, `light` and `dark`."
+  },
+  {
+    "name": "classes",
+    "type": "string",
+    "required": false,
+    "description": "Classes to add to the footer."
+  },
+  {
+    "name": "attributes",
+    "type": "object",
+    "required": false,
+    "description": "HTML attributes (for example data attributes) to add to the footer."
+  }
+]

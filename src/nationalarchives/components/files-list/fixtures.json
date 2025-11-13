@@ -1,0 +1,99 @@
+{
+  "component": "files list",
+  "fixtures": [
+    {
+      "name": "default",
+      "options": {
+        "itemHeadingLevel": 3,
+        "items": [
+          {
+            "id": "file-1",
+            "text": "Preservation policy part 1",
+            "href": "#",
+            "fileType": "PDF",
+            "fileSize": "1.7MB",
+            "fileExtent": "120 pages",
+            "description": "The principles according to which The National Archives will preserve and care for our archival collections."
+          },
+          {
+            "id": "file-2",
+            "text": "Preservation policy part 2",
+            "href": "#",
+            "fileType": "PDF",
+            "fileSize": "0.9MB",
+            "icon": "pdf",
+            "description": "The principles according to which The National Archives will preserve and care for our archival collections."
+          },
+          {
+            "id": "file-3",
+            "text": "Preservation policy part 3",
+            "href": "#",
+            "fileType": "PDF",
+            "fileSize": "3MB",
+            "fileExtent": "200 pages"
+          }
+        ]
+      },
+      "html": "<div class=\"tna-files-list\"><ul class=\"tna-files-list__items\"><li class=\"tna-files-list__item\"><h3 class=\"tna-files-list__item-title tna-heading-s\"><a href=\"#\" class=\"tna-files-list__link\" aria-describedby=\"file-1-extent\">Preservation policy part 1<span class=\"tna-visually-hidden\"> (PDF, 1.7MB)</span></a></h3><i class=\"tna-files-list__item-icon fa-solid fa-fw fa-file\" aria-hidden=\"true\"></i><div class=\"tna-files-list__item-body\" id=\"file-1\"><dl class=\"tna-dl-chips tna-dl-chips--plain tna-files-list__item-meta\"><dt>File type</dt><dd><span class=\"tna-dl-chips__item\">PDF</span></dd><dt>File size</dt><dd><span class=\"tna-dl-chips__item\">1.7MB</span></dd><dt>Extent</dt><dd><span id=\"file-1-extent\" class=\"tna-dl-chips__item\">120 pages</span></dd></dl><p class=\"tna-files-list__item-description\">The principles according to which The National Archives will preserve and care for our archival collections.</p></div></li><li class=\"tna-files-list__item\"><h3 class=\"tna-files-list__item-title tna-heading-s\"><a href=\"#\" class=\"tna-files-list__link\">Preservation policy part 2<span class=\"tna-visually-hidden\"> (PDF, 0.9MB)</span></a></h3><i class=\"tna-files-list__item-icon fa-solid fa-fw fa-file-pdf\" aria-hidden=\"true\"></i><div class=\"tna-files-list__item-body\" id=\"file-2\"><dl class=\"tna-dl-chips tna-dl-chips--plain tna-files-list__item-meta\"><dt>File type</dt><dd><span class=\"tna-dl-chips__item\">PDF</span></dd><dt>File size</dt><dd><span class=\"tna-dl-chips__item\">0.9MB</span></dd></dl><p class=\"tna-files-list__item-description\">The principles according to which The National Archives will preserve and care for our archival collections.</p></div></li><li class=\"tna-files-list__item\"><h3 class=\"tna-files-list__item-title tna-heading-s\"><a href=\"#\" class=\"tna-files-list__link\" aria-describedby=\"file-3-extent\">Preservation policy part 3<span class=\"tna-visually-hidden\"> (PDF, 3MB)</span></a></h3><i class=\"tna-files-list__item-icon fa-solid fa-fw fa-file\" aria-hidden=\"true\"></i><div class=\"tna-files-list__item-body\" id=\"file-3\"><dl class=\"tna-dl-chips tna-dl-chips--plain tna-files-list__item-meta\"><dt>File type</dt><dd><span class=\"tna-dl-chips__item\">PDF</span></dd><dt>File size</dt><dd><span class=\"tna-dl-chips__item\">3MB</span></dd><dt>Extent</dt><dd><span id=\"file-3-extent\" class=\"tna-dl-chips__item\">200 pages</span></dd></dl></div></li></ul></div>"
+    },
+    {
+      "name": "fully clickable",
+      "options": {
+        "itemHeadingLevel": 3,
+        "items": [
+          {
+            "id": "file-1",
+            "text": "Preservation policy part 1",
+            "href": "#",
+            "fileType": "PDF",
+            "fileSize": "1.7MB",
+            "fileExtent": "120 pages",
+            "description": "The principles according to which The National Archives will preserve and care for our archival collections."
+          }
+        ],
+        "fullAreaClick": true
+      },
+      "html": "<div class=\"tna-files-list tna-files-list--full-click\"><ul class=\"tna-files-list__items\"><li class=\"tna-files-list__item\"><h3 class=\"tna-files-list__item-title tna-heading-s\"><a href=\"#\" class=\"tna-files-list__link\" aria-describedby=\"file-1-extent\">Preservation policy part 1<span class=\"tna-visually-hidden\"> (PDF, 1.7MB)</span></a></h3><i class=\"tna-files-list__item-icon fa-solid fa-fw fa-file\" aria-hidden=\"true\"></i><div class=\"tna-files-list__item-body\" id=\"file-1\"><dl class=\"tna-dl-chips tna-dl-chips--plain tna-files-list__item-meta\"><dt>File type</dt><dd><span class=\"tna-dl-chips__item\">PDF</span></dd><dt>File size</dt><dd><span class=\"tna-dl-chips__item\">1.7MB</span></dd><dt>Extent</dt><dd><span id=\"file-1-extent\" class=\"tna-dl-chips__item\">120 pages</span></dd></dl><p class=\"tna-files-list__item-description\">The principles according to which The National Archives will preserve and care for our archival collections.</p></div></li></ul></div>"
+    },
+    {
+      "name": "with classes",
+      "options": {
+        "itemHeadingLevel": 3,
+        "items": [
+          {
+            "id": "file-1",
+            "text": "Preservation policy part 1",
+            "href": "#",
+            "fileType": "PDF",
+            "fileSize": "1.7MB",
+            "fileExtent": "120 pages",
+            "description": "The principles according to which The National Archives will preserve and care for our archival collections."
+          }
+        ],
+        "classes": "files__test-class"
+      },
+      "html": "<div class=\"tna-files-list files__test-class\"><ul class=\"tna-files-list__items\"><li class=\"tna-files-list__item\"><h3 class=\"tna-files-list__item-title tna-heading-s\"><a href=\"#\" class=\"tna-files-list__link\" aria-describedby=\"file-1-extent\">Preservation policy part 1<span class=\"tna-visually-hidden\"> (PDF, 1.7MB)</span></a></h3><i class=\"tna-files-list__item-icon fa-solid fa-fw fa-file\" aria-hidden=\"true\"></i><div class=\"tna-files-list__item-body\" id=\"file-1\"><dl class=\"tna-dl-chips tna-dl-chips--plain tna-files-list__item-meta\"><dt>File type</dt><dd><span class=\"tna-dl-chips__item\">PDF</span></dd><dt>File size</dt><dd><span class=\"tna-dl-chips__item\">1.7MB</span></dd><dt>Extent</dt><dd><span id=\"file-1-extent\" class=\"tna-dl-chips__item\">120 pages</span></dd></dl><p class=\"tna-files-list__item-description\">The principles according to which The National Archives will preserve and care for our archival collections.</p></div></li></ul></div>"
+    },
+    {
+      "name": "with attributes",
+      "options": {
+        "itemHeadingLevel": 3,
+        "items": [
+          {
+            "id": "file-1",
+            "text": "Preservation policy part 1",
+            "href": "#",
+            "fileType": "PDF",
+            "fileSize": "1.7MB",
+            "fileExtent": "120 pages",
+            "description": "The principles according to which The National Archives will preserve and care for our archival collections."
+          }
+        ],
+        "attributes": {
+          "data-testattribute": "foobar"
+        }
+      },
+      "html": "<div class=\"tna-files-list\" data-testattribute=\"foobar\"><ul class=\"tna-files-list__items\"><li class=\"tna-files-list__item\"><h3 class=\"tna-files-list__item-title tna-heading-s\"><a href=\"#\" class=\"tna-files-list__link\" aria-describedby=\"file-1-extent\">Preservation policy part 1<span class=\"tna-visually-hidden\"> (PDF, 1.7MB)</span></a></h3><i class=\"tna-files-list__item-icon fa-solid fa-fw fa-file\" aria-hidden=\"true\"></i><div class=\"tna-files-list__item-body\" id=\"file-1\"><dl class=\"tna-dl-chips tna-dl-chips--plain tna-files-list__item-meta\"><dt>File type</dt><dd><span class=\"tna-dl-chips__item\">PDF</span></dd><dt>File size</dt><dd><span class=\"tna-dl-chips__item\">1.7MB</span></dd><dt>Extent</dt><dd><span id=\"file-1-extent\" class=\"tna-dl-chips__item\">120 pages</span></dd></dl><p class=\"tna-files-list__item-description\">The principles according to which The National Archives will preserve and care for our archival collections.</p></div></li></ul></div>"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+[
+  {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "description": "The label for the search field."
+  },
+  {
+    "name": "headingLevel",
+    "type": "number",
+    "required": false,
+    "description": "The heading level which represents an element from `<h1>` through to `<h6>`. Leave blank or set to `0` to use a plain `<label>` element with no heading."
+  },
+  {
+    "name": "headingSize",
+    "type": "string",
+    "required": false,
+    "description": "The physical size of the search field title (`xl`, `l`, `m`, `s` or `xs`).",
+    "default": "m"
+  },
+  {
+    "name": "id",
+    "type": "string",
+    "required": true,
+    "description": "A unique ID for the search field component."
+  },
+  {
+    "name": "name",
+    "type": "string",
+    "required": true,
+    "description": "The name of the form field."
+  },
+  {
+    "name": "hint",
+    "type": "string",
+    "required": false,
+    "description": "An optional hint to display above the form field."
+  },
+  {
+    "name": "value",
+    "type": "string",
+    "required": false,
+    "description": "The form field value."
+  },
+  {
+    "name": "formItemClasses",
+    "type": "string",
+    "required": false,
+    "description": "Classes to add to the search form group."
+  },
+  {
+    "name": "formItemAttributes",
+    "type": "object",
+    "required": false,
+    "description": "HTML attributes (for example data attributes) to add to the search form group."
+  },
+  {
+    "name": "classes",
+    "type": "string",
+    "required": false,
+    "description": "Classes to add to the search field."
+  },
+  {
+    "name": "attributes",
+    "type": "object",
+    "required": false,
+    "description": "HTML attributes (for example data attributes) to add to the search field."
+  }
+]

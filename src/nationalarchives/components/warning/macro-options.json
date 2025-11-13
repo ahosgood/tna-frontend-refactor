@@ -1,0 +1,33 @@
+[
+  {
+    "name": "heading",
+    "type": "string",
+    "required": false,
+    "default": "Important information",
+    "description": "If set, the visually hidden heading for the warning which will be suffixed with an exclamation mark."
+  },
+  {
+    "name": "headingLevel",
+    "type": "number",
+    "required": true,
+    "description": "The heading level which represents an element from `<h1>` through to `<h6>`."
+  },
+  {
+    "name": "body",
+    "type": "string",
+    "required": true,
+    "description": "The body text of the warning."
+  },
+  {
+    "name": "classes",
+    "type": "string",
+    "required": false,
+    "description": "Classes to add to the warning."
+  },
+  {
+    "name": "attributes",
+    "type": "object",
+    "required": false,
+    "description": "HTML attributes (for example data attributes) to add to the warning."
+  }
+]

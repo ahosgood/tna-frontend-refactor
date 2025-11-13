@@ -1,0 +1,61 @@
+import Template from "./template.njk?raw";
+import TextInput from "../text-input/template.njk?raw";
+import macroOptions from "./macro-options.json";
+import render from "../../lib/render";
+
+export default {
+  title: "Components/Fieldset",
+  argTypes: Object.fromEntries(
+    Object.entries({
+      legend: { control: "text" },
+      headingLevel: { control: { type: "number", min: 1, max: 6 } },
+      headingSize: {
+        control: "inline-radio",
+        options: ["xs", "s", "m", "l", "xl"],
+      },
+      html: { control: "text" },
+      id: { control: "text" },
+      hint: { control: "text" },
+      smallerHint: { control: "boolean" },
+      classes: { control: "text" },
+      attributes: { control: "object" },
+    }).map(([key, value]) => [
+      key,
+      {
+        ...value,
+        description: macroOptions.find((option) => option.name === key)
+          ?.description,
+      },
+    ]),
+  ),
+  render: (params) => render(Template, { params }),
+};
+
+export const Standard = {
+  args: {
+    legend: "Fieldset",
+    headingLevel: 1,
+    headingSize: "xl",
+    hint: "This is a <strong>hint</strong>.",
+    html: Array(6)
+      .fill("")
+      .reduce(
+        (prev, value, index) =>
+          prev +
+          render(TextInput, {
+            params: {
+              label: "Text input",
+              headingLevel: 2,
+              headingSize: "xs",
+              hint: "This is a hint",
+              // error: index % 3 === 0 ? { text: "This is an error" } : null,
+              name: `text-input${index + 1}`,
+              id: `text-input${index + 1}`,
+              size: [null, "xl", "l", "m", "s", "xs"][index] || null,
+            },
+          }).outerHTML,
+        "",
+      ),
+    id: "fieldset-1",
+  },
+};

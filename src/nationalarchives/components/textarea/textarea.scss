@@ -1,0 +1,42 @@
+@use "../../variables/forms" as formsVars;
+@use "../../tools/borders";
+@use "../../tools/colour";
+@use "../../tools/spacing";
+
+$textarea-minimum-lines-visible: 5.5 !default;
+$textarea-line-height: 1.5rem !default;
+$textarea-vertical-padding: 0.25 !default;
+
+.tna-textarea {
+  width: 100%;
+  min-height: #{($textarea-line-height * $textarea-minimum-lines-visible) +
+    (spacing.space($textarea-vertical-padding * 2))};
+  padding: spacing.space($textarea-vertical-padding) spacing.space(0.5);
+
+  display: block;
+  box-sizing: border-box;
+
+  line-height: 1.5rem;
+
+  resize: vertical;
+
+  @include colour.colour-input;
+
+  @include borders.rounded-border;
+
+  .tna-form-item--error & {
+    @include colour.colour-border("form-error-border");
+  }
+
+  &--m {
+    max-width: 20rem;
+  }
+
+  &--l {
+    max-width: 40rem;
+  }
+
+  &--xl {
+    max-width: 80rem;
+  }
+}

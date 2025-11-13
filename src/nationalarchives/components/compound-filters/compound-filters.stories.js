@@ -1,0 +1,49 @@
+import Template from "./template.njk?raw";
+import render from "../../lib/render";
+import macroOptions from "./macro-options.json";
+
+export default {
+  title: "Components/Compound filters",
+  argTypes: Object.fromEntries(
+    Object.entries({
+      items: { control: "object" },
+      removeAllText: { control: "text" },
+      removeAllHref: { control: "text" },
+      classes: { control: "text" },
+      attributes: { control: "object" },
+    }).map(([key, value]) => [
+      key,
+      {
+        ...value,
+        description: macroOptions.find((option) => option.name === key)
+          ?.description,
+      },
+    ]),
+  ),
+  render: (params) => render(Template, { params }),
+};
+
+export const Standard = {
+  args: {
+    items: [
+      {
+        label: "AIR - Air Ministry and Royal Air Force records",
+        href: "#",
+        title: "Remove Air Ministry and Royal Air Force records filter",
+      },
+      {
+        label: "Item",
+        href: "#",
+        title: "Remove item filter",
+      },
+      {
+        label: "Closed Or Retained Document, Open Description",
+        href: "#",
+        title:
+          "Remove filter for Closed Or Retained Document, Open Description",
+      },
+    ],
+    removeAllHref: "#",
+    classes: "tna-filters--demo",
+  },
+};

@@ -1,34 +1,37 @@
-import nunjucks from "nunjucks";
-// import "./button.scss";
-
 import Template from "./template.njk?raw";
-
-nunjucks.configure("src");
+import macroOptions from "./macro-options.json";
+import render from "../../lib/render";
 
 export default {
   title: "Components/Button",
-  tags: ["autodocs"],
-  render: ({ label, ...args }) =>
-    nunjucks.renderString(Template, { params: args }),
-  // nunjucks.render("nationalarchives/components/button/template.njk", { params: args }),
-  argTypes: {
-    text: { control: "text" },
-    html: { control: "text" },
-    href: { control: "text" },
-    title: { control: "text" },
-    icon: { control: "text" },
-    iconSvg: { control: "text" },
-    accent: { control: "boolean" },
-    small: { control: "boolean" },
-    plain: { control: "boolean" },
-    iconOnly: { control: "boolean" },
-    iconOnlyOnMobile: { control: "boolean" },
-    rightAlignIcon: { control: "boolean" },
-    buttonElement: { control: "boolean" },
-    buttonType: { control: "text" },
-    classes: { control: "text" },
-    attributes: { control: "object" },
-  },
+  argTypes: Object.fromEntries(
+    Object.entries({
+      text: { control: "text" },
+      html: { control: "text" },
+      href: { control: "text" },
+      title: { control: "text" },
+      icon: { control: "text" },
+      iconSvg: { control: "text" },
+      accent: { control: "boolean" },
+      small: { control: "boolean" },
+      plain: { control: "boolean" },
+      iconOnly: { control: "boolean" },
+      iconOnlyOnMobile: { control: "boolean" },
+      rightAlignIcon: { control: "boolean" },
+      buttonElement: { control: "boolean" },
+      buttonType: { control: "text" },
+      classes: { control: "text" },
+      attributes: { control: "object" },
+    }).map(([key, value]) => [
+      key,
+      {
+        ...value,
+        description: macroOptions.find((option) => option.name === key)
+          ?.description,
+      },
+    ]),
+  ),
+  render: (params) => render(Template, { params }),
 };
 
 export const Standard = {

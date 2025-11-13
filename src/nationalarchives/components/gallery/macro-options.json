@@ -1,0 +1,95 @@
+[
+  {
+    "name": "title",
+    "type": "string",
+    "required": false,
+    "description": "The main title of the gallery."
+  },
+  {
+    "name": "headingLevel",
+    "type": "number",
+    "required": false,
+    "description": "The heading level which represents an element from `<h1>` through to `<h6>`. Required if `title` is set."
+  },
+  {
+    "name": "headingSize",
+    "type": "string",
+    "required": false,
+    "default": "m",
+    "description": "The physical size of the gallery title (`xl`, `l`, `m` or `s`)."
+  },
+  {
+    "name": "body",
+    "type": "string",
+    "required": false,
+    "description": "The HTML for the main body of the gallery. Not displayed if `text` is set."
+  },
+  {
+    "name": "text",
+    "type": "string",
+    "required": false,
+    "description": "The text for the gallery which will be inserted into a `<p>` element. Overwrites `body` if it is set."
+  },
+  {
+    "name": "items",
+    "type": "array",
+    "required": true,
+    "description": "",
+    "params": [
+      {
+        "name": "src",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "alt",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "id",
+    "type": "string",
+    "required": true,
+    "description": "A unique ID for the gallery component."
+  },
+  {
+    "name": "bounded",
+    "type": "boolean",
+    "required": false,
+    "description": "If `true`, add a background to the gallery to separate it from surrounding contnet."
+  },
+  {
+    "name": "classes",
+    "type": "string",
+    "required": false,
+    "description": "Classes to add to the gallery."
+  },
+  {
+    "name": "attributes",
+    "type": "object",
+    "required": false,
+    "description": "HTML attributes (for example data attributes) to add to the gallery."
+  }
+]

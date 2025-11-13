@@ -1,0 +1,286 @@
+[
+  {
+    "name": "supertitle",
+    "type": "string",
+    "required": false,
+    "description": "The smaller title to display above the main card title."
+  },
+  {
+    "name": "title",
+    "type": "string",
+    "required": true,
+    "description": "The main title of the card."
+  },
+  {
+    "name": "headingLevel",
+    "type": "number",
+    "required": true,
+    "description": "The heading level which represents an element from `<h1>` through to `<h6>`."
+  },
+  {
+    "name": "headingSize",
+    "type": "string",
+    "required": false,
+    "default": "m",
+    "description": "The physical size of the card title (`xl`, `l`, `m` or `s`)."
+  },
+  {
+    "name": "href",
+    "type": "string",
+    "required": false,
+    "description": "A URL to use as a link in the card’s heading and image."
+  },
+  {
+    "name": "hrefClasses",
+    "type": "string",
+    "required": false,
+    "description": "Classes to add to the elements of the card that use `href`."
+  },
+  {
+    "name": "hrefAttributes",
+    "type": "object",
+    "required": false,
+    "description": "HTML attributes (for example data attributes) to add to the elements of the card that use `href`."
+  },
+  {
+    "name": "imageSrc",
+    "type": "string",
+    "required": false,
+    "description": "The location of the card’s image."
+  },
+  {
+    "name": "imageAlt",
+    "type": "string",
+    "required": false,
+    "description": "Alternative text for the image in the event that it can’t be displayed."
+  },
+  {
+    "name": "imageWidth",
+    "type": "number",
+    "required": false,
+    "description": "The width of the image in pixels."
+  },
+  {
+    "name": "imageHeight",
+    "type": "number",
+    "required": false,
+    "description": "The height of the image in pixels."
+  },
+  {
+    "name": "imageType",
+    "type": "string",
+    "required": false,
+    "description": "The mime type of the image. Defaults to `image/jpeg`. Only required when using `imageSources`."
+  },
+  {
+    "name": "imageSources",
+    "type": "array",
+    "required": false,
+    "description": "Alternative sources of the image.",
+    "params": [
+      {
+        "name": "src",
+        "type": "string",
+        "required": true,
+        "description": "The location of the image."
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "required": true,
+        "description": "The mime type of the image."
+      },
+      {
+        "name": "media",
+        "type": "string",
+        "required": false,
+        "description": "A media condition for the image."
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "required": false,
+        "description": "The width of the image in pixels."
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "required": false,
+        "description": "The height of the image in pixels."
+      }
+    ]
+  },
+  {
+    "name": "lazyImage",
+    "type": "boolean",
+    "required": false,
+    "description": "If `true`, make the image a lazily-loaded image."
+  },
+  {
+    "name": "label",
+    "type": "string",
+    "required": false,
+    "description": "A label which will appear over the top left of the card’s image. If there is no image, the label is not displayed."
+  },
+  {
+    "name": "labelColour",
+    "type": "string",
+    "required": false,
+    "description": "The colour to use for the label. Can be set to `black`, `pink`, `orange`, `yellow`, `green` or `blue`. If not set, the default is the current accent colour."
+  },
+  {
+    "name": "meta",
+    "type": "array",
+    "required": false,
+    "description": "Small pieces of additional information akin to subtitles, displayed between the title and the body.",
+    "params": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": "The title of the meta data which is visually hidden."
+      },
+      {
+        "name": "text",
+        "type": "string",
+        "required": true,
+        "description": "The text element of the meta data."
+      },
+      {
+        "name": "icon",
+        "type": "string",
+        "required": false,
+        "description": "The name of a Font Awesome icon, without the `fa-` prefix."
+      }
+    ]
+  },
+  {
+    "name": "metaStacked",
+    "type": "boolean",
+    "required": false,
+    "description": "If `true`, stack the list of meta information vertically."
+  },
+  {
+    "name": "accentMeta",
+    "type": "boolean",
+    "required": false,
+    "description": "If `true`, apply an accented background to the meta items."
+  },
+  {
+    "name": "body",
+    "type": "string",
+    "required": false,
+    "description": "The HTML for the main body of the card. Not displayed if `text` is set."
+  },
+  {
+    "name": "text",
+    "type": "string",
+    "required": false,
+    "description": "The text for the card which will be inserted into a `<p>` element. Overwrites `body` if it is set."
+  },
+  {
+    "name": "actions",
+    "type": "array",
+    "required": false,
+    "description": "An array of actions to add at the bottom of the card. Each action is displayed as a button.",
+    "params": [
+      {
+        "name": "text",
+        "type": "string",
+        "required": true,
+        "description": "The text for the action."
+      },
+      {
+        "name": "href",
+        "type": "string",
+        "required": true,
+        "description": "The URL of the action."
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": false,
+        "description": "An optional title for the action."
+      },
+      {
+        "name": "classes",
+        "type": "string",
+        "required": false,
+        "description": "Classes to add to the card action."
+      },
+      {
+        "name": "attributes",
+        "type": "object",
+        "required": false,
+        "description": "HTML attributes (for example data attributes) to add to the card action."
+      }
+    ]
+  },
+  {
+    "name": "fullAreaClick",
+    "type": "boolean",
+    "required": false,
+    "description": "If `true`, `href` is set and there are no actions, allow users to click anywhere on the card to follow the link."
+  },
+  {
+    "name": "horizontal",
+    "type": "boolean",
+    "required": false,
+    "description": "If `true`, change the card to a horizontal layout, placing the image to the left of the content. This layout changes back to vertical on smaller devices."
+  },
+  {
+    "name": "horizontalOnSmall",
+    "type": "boolean",
+    "required": false,
+    "description": "If `true`, use a horizontal layout on small devices."
+  },
+  {
+    "name": "horizontalFlipped",
+    "type": "boolean",
+    "required": false,
+    "description": "If `true`, place the image on the right when using horizontal layouts."
+  },
+  {
+    "name": "horizontalSmallImage",
+    "type": "boolean",
+    "required": false,
+    "description": "If `true`, use a smaller image when using horizontal layouts."
+  },
+  {
+    "name": "style",
+    "type": "string",
+    "required": false,
+    "description": "The style of card to use which can be either `contrast` for an inverted card, `tint` for a tinted one or `accent` for a card that matches the page’s accent colour."
+  },
+  {
+    "name": "plainSupertitle",
+    "type": "boolean",
+    "required": false,
+    "description": "If `true`, remove the accent or contrast colour from the card supertitle."
+  },
+  {
+    "name": "accentMeta",
+    "type": "boolean",
+    "required": false,
+    "description": "If `true`, meta tags adopt an accented style."
+  },
+  {
+    "name": "htmlElement",
+    "type": "string",
+    "required": false,
+    "default": "article",
+    "description": "HTML element of the card."
+  },
+  {
+    "name": "classes",
+    "type": "string",
+    "required": false,
+    "description": "Classes to add to the card."
+  },
+  {
+    "name": "attributes",
+    "type": "object",
+    "required": false,
+    "description": "HTML attributes (for example data attributes) to add to the card."
+  }
+]

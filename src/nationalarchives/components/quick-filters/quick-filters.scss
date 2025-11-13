@@ -1,0 +1,70 @@
+@use "../../tools/borders";
+@use "../../tools/colour";
+@use "../../tools/spacing";
+@use "../../tools/typography";
+
+.tna-quick-filters {
+  @include spacing.space-above;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.space(0.25) spacing.space(1.25);
+
+  @include typography.font-size(16);
+  list-style: none;
+
+  &--stacked {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &--filled {
+    align-items: flex-start;
+  }
+
+  &--stacked#{&}--filled {
+    align-items: stretch;
+  }
+
+  &__item {
+  }
+
+  &--filled &__item {
+    flex: 1 1 auto;
+
+    text-align: center;
+  }
+
+  &__link {
+    display: block;
+
+    position: relative;
+  }
+
+  &__item--selected &__link {
+    @include typography.main-font-weight-bold;
+
+    &::after {
+      content: "";
+
+      height: 0;
+
+      position: absolute;
+      top: 100%;
+      right: 0;
+      left: 0;
+      @include colour.thick-keyline-accent("bottom");
+    }
+  }
+
+  &--stacked &__item--selected &__link {
+    padding-left: 0.75rem;
+
+    border-bottom-width: 0;
+    @include colour.thick-keyline-accent("left");
+
+    &::after {
+      display: none;
+    }
+  }
+}

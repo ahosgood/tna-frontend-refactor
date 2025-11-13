@@ -1,0 +1,337 @@
+@use "sass:math";
+@use "../../variables/a11y" as a11yVars;
+@use "../../variables/borders" as bordersVars;
+@use "../../tools/a11y";
+@use "../../tools/borders";
+@use "../../tools/colour";
+@use "../../tools/media";
+@use "../../tools/spacing";
+@use "../../tools/typography";
+
+@mixin horizontal-card-layout($modifierClass, $innerPaddingAmount) {
+  &#{$modifierClass} {
+    padding-bottom: 0;
+
+    display: grid;
+    grid-template: min-content 1fr / 50% 50%;
+    grid-template-areas:
+      "image header"
+      "image body";
+    gap: 0;
+
+    > * + * {
+      margin-top: spacing.space(0.5);
+    }
+
+    > :first-child {
+      padding-top: spacing.space($innerPaddingAmount - 0.25);
+    }
+
+    > :last-child {
+      padding-bottom: spacing.space($innerPaddingAmount);
+    }
+  }
+
+  &#{$modifierClass}:not(:has(&__image-container)) {
+    grid-template-columns: 0 100%;
+  }
+
+  &#{$modifierClass}#{&}--flipped {
+    grid-template-areas:
+      "header image"
+      "body image"
+      "footer image";
+  }
+
+  &#{$modifierClass}#{&}--flipped:not(:has(&__image-container)) {
+    grid-template-columns: 100% 0;
+  }
+
+  &#{$modifierClass} &__heading,
+  &#{$modifierClass} &__body {
+    padding-right: spacing.space($innerPaddingAmount);
+    padding-left: spacing.space($innerPaddingAmount);
+  }
+
+  &#{$modifierClass} &__heading {
+    grid-area: header;
+  }
+
+  &#{$modifierClass} &__image-container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    grid-area: image;
+
+    border-radius: bordersVars.$rounded-border-radius 0 0
+      bordersVars.$rounded-border-radius;
+  }
+
+  &#{$modifierClass}#{&}--flipped &__image-container {
+    border-radius: 0 bordersVars.$rounded-border-radius
+      bordersVars.$rounded-border-radius 0;
+  }
+
+  &#{$modifierClass} &__body {
+    grid-area: body;
+  }
+}
+
+.tna-card {
+  @include spacing.space-above;
+
+  display: flex;
+  flex-direction: column;
+  gap: spacing.space(0.5);
+
+  position: relative;
+  z-index: 1;
+
+  @include borders.rounded-border;
+
+  &:not(:has(&__image-container)) {
+    padding-top: spacing.space(0.5);
+
+    @include colour.thick-keyline-dark(top);
+    border-radius: 0.1px 0.1px bordersVars.$rounded-border-radius
+      bordersVars.$rounded-border-radius;
+  }
+
+  &__heading {
+    order: 2;
+
+    .tna-hgroup__supertitle {
+      margin-top: spacing.space(0.25);
+    }
+  }
+
+  &:not(:has(&__image-container)) &__heading {
+    .tna-hgroup__supertitle {
+      margin-top: spacing.space(0.5);
+    }
+  }
+
+  &--full-click {
+    &:hover {
+      @include colour.colour-outline(
+        "base-keyline",
+        a11yVars.$focus-outline-active-outer-width,
+        solid
+      );
+      outline-offset: a11yVars.$focus-outline-active-inner-width;
+    }
+  }
+
+  @include a11y.faux-full-outline("&--full-click &__heading-link");
+
+  &--full-click#{&}:not(:has(&__image-container)) &__heading-link::before {
+    border-radius: 0.1px 0.1px bordersVars.$rounded-border-radius
+      bordersVars.$rounded-border-radius;
+  }
+
+  &--full-click#{&}--padded#{&}:not(:has(&__image-container))
+    &__heading-link::before {
+    border-radius: 0.1px 0.1px bordersVars.$rounded-border-radius
+      bordersVars.$rounded-border-radius;
+  }
+
+  &--full-click:not(:has(&__image-container)) &__heading-link {
+    &::before {
+      top: -#{bordersVars.$thick-border-width};
+    }
+  }
+
+  &--full-height {
+    height: 100%;
+
+    box-sizing: border-box;
+  }
+
+  &__image-container {
+    aspect-ratio: 3/2;
+    margin-bottom: spacing.space(0.25);
+
+    overflow: hidden;
+
+    position: relative;
+
+    order: 1;
+
+    border-radius: #{bordersVars.$rounded-border-radius - 1px}
+      #{bordersVars.$rounded-border-radius - 1px} 0 0;
+
+    @include colour.image-loader-background;
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+  }
+
+  &__image-label {
+    position: absolute;
+    top: spacing.space(0.5);
+    left: spacing.space(0.5);
+    z-index: 2;
+  }
+
+  &__body {
+    order: 3;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: spacing.space(1);
+
+    > * {
+      margin-top: 0;
+    }
+  }
+
+  &__meta {
+    padding-top: spacing.space(0.5);
+  }
+
+  &__actions {
+    margin-top: spacing.space(0.5);
+
+    display: flex;
+    gap: spacing.space(1) spacing.space(2);
+  }
+
+  &__action {
+    @include typography.main-font-weight-bold;
+  }
+
+  &--padded {
+    padding-bottom: spacing.space(1);
+  }
+
+  &--padded:not(:has(&__image-container)) {
+    border-radius: 0.1px 0.1px bordersVars.$rounded-border-radius
+      bordersVars.$rounded-border-radius;
+  }
+
+  &--padded &__heading,
+  &--padded &__body {
+    padding-right: spacing.space(1);
+    padding-left: spacing.space(1);
+  }
+
+  &--plain {
+    &::after {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+
+      border-radius: inherit;
+      @include colour.colour-border("keyline", 1px, solid);
+    }
+  }
+
+  &--plain:not(:has(&__image-container)) {
+    &::after {
+      border-top-width: 0;
+    }
+  }
+
+  @include colour.on-high-contrast {
+    padding-bottom: spacing.space(1);
+    @include borders.rounded-border;
+
+    &:not(&--padded),
+    &--plain {
+      @include colour.colour-border("keyline-dark", 1px, solid);
+    }
+
+    &--full-click:not(:has(&__image-container)) {
+      @include colour.thick-keyline-dark(top);
+    }
+
+    &__heading,
+    &__body {
+      padding-right: spacing.space(1);
+      padding-left: spacing.space(1);
+    }
+
+    &__image-container {
+      border-radius: #{bordersVars.$rounded-border-radius - 1px}
+        #{bordersVars.$rounded-border-radius - 1px} 0 0;
+    }
+
+    &:not(:has(&__image-container)) {
+      border-radius: 0.1px 0.1px bordersVars.$rounded-border-radius
+        bordersVars.$rounded-border-radius;
+    }
+
+    &--full-click:not(&--padded) &__heading-link::before {
+      @include borders.rounded-border;
+    }
+
+    &--full-click:not(:has(&__image-container), &--padded)
+      &__heading-link::before {
+      border-radius: 0.1px 0.1px bordersVars.$rounded-border-radius
+        bordersVars.$rounded-border-radius;
+    }
+
+    &--padded {
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  @include colour.on-forced-colours {
+    padding-bottom: spacing.space(1);
+    @include colour.colour-border("keyline-dark", 1px, solid);
+    @include borders.rounded-border;
+
+    &__heading,
+    &__body {
+      padding-right: spacing.space(1);
+      padding-left: spacing.space(1);
+    }
+
+    &--full-click:not(:has(&__image-container)) &__heading-link {
+      &::before {
+        top: -#{bordersVars.$thick-border-width - 1px};
+      }
+    }
+  }
+
+  @include media.on-larger-than-mobile {
+    @include horizontal-card-layout("--horizontal", 1.25);
+
+    &--horizontal-small-image {
+      grid-template-columns: max(10rem, 25%) 1fr;
+    }
+
+    &--horizontal-small-image#{&}--flipped {
+      grid-template-columns: 1fr max(10rem, 25%);
+    }
+  }
+
+  @include media.on-small {
+    @include horizontal-card-layout("--horizontal-on-small", 1);
+
+    &--horizontal-small-image {
+      grid-template-columns: max(10rem, 25%) 1fr;
+    }
+
+    &--horizontal-small-image#{&}--flipped {
+      grid-template-columns: 1fr max(10rem, 25%);
+    }
+  }
+}

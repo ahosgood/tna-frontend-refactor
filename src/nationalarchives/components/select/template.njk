@@ -1,0 +1,23 @@
+{% from "nationalarchives/utilities/forms/form-item.njk" import tnaFormItem %}
+
+{%- set containerClasses = [params.formItemClasses] if params.formItemClasses else [] -%}
+{%- if params.inline -%}
+  {%- set containerClasses = containerClasses.concat('tna-form-item--inline') -%}
+{%- endif -%}
+
+{%- call tnaFormItem({
+  headingLevel: params.headingLevel,
+  headingSize: params.headingSize,
+  id: params.id,
+  label: params.label,
+  hint: params.hint,
+  error: params.error,
+  classes: containerClasses | join(' '),
+  attributes: params.formItemAttributes
+}) %}
+  <select class="tna-select{% if params.size %} tna-select--{{ params.size }}{% endif %}{% if params.classes %} {{ params.classes }}{% endif %}" name="{{ params.name }}" id="{{ params.id }}"{% if params.hint %} aria-describedby="{{ params.id }}-hint"{% endif %} {%- for attribute, value in params.attributes %} {{ attribute }}{% if value !== '' %}="{{ value }}"{% endif %}{% endfor %}>
+    {%- for item in params.items %}
+    <option value="{{ item.value }}"{% if item.value === params.selected %} selected{% endif %}>{{ item.text }}</option>
+    {%- endfor %}
+  </select>
+{%- endcall %}

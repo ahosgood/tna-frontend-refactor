@@ -1,0 +1,45 @@
+{% from "nationalarchives/components/fieldset/macro.njk" import tnaFieldset %}
+{% from "nationalarchives/components/date-input/date-input-day.njk" import tnaDateInputDayElement %}
+{% from "nationalarchives/components/date-input/date-input-month.njk" import tnaDateInputMonthElement %}
+{% from "nationalarchives/components/date-input/date-input-year.njk" import tnaDateInputYearElement %}
+
+{%- call tnaFieldset({
+  headingLevel: params.headingLevel,
+  headingSize: params.headingSize,
+  id: params.id,
+  legend: params.label,
+  hint: params.hint,
+  smallerHint: true,
+  error: params.error,
+  classes: params.formItemClasses,
+  attributes: params.formItemAttributes
+}) %}
+  <div class="tna-date-input" id="{{ params.id }}"{% if params.progressive %} data-module="tna-date-input-progressive"{% endif %}>
+    {%- set fields = params.fields if params.fields else ['d', 'm', 'y'] -%}
+    {%- if params.progressive %}
+      {%- if params.fields %}
+        {%- set fields = [] -%}
+        {% if 'y' in params.fields %}
+          {%- set fields = fields ~ ['y'] -%}
+        {%- endif %}
+        {% if 'm' in params.fields %}
+          {%- set fields = fields ~ ['m'] -%}
+        {%- endif %}
+        {% if 'd' in params.fields %}
+          {%- set fields = fields ~ ['d'] -%}
+        {%- endif %}
+      {%- else %}
+        {%- set fields = ['y', 'm', 'd'] -%}
+      {%- endif %}
+    {%- endif %}
+    {%- for field in fields %}
+      {%- if field == 'd' %}
+        {{ tnaDateInputDayElement(params) | indent(6) }}
+      {%- elif field == 'm' %}
+        {{ tnaDateInputMonthElement(params) | indent(6) }}
+      {%- elif field == 'y' %}
+        {{ tnaDateInputYearElement(params) | indent(6) }}
+      {%- endif %}
+    {%- endfor %}
+  </div>
+{%- endcall %}

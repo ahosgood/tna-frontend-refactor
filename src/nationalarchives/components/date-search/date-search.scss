@@ -1,0 +1,27 @@
+@use "../../variables/forms" as formsVars;
+@use "../../tools/borders";
+@use "../../tools/colour";
+@use "../../tools/spacing";
+@use "../../tools/typography";
+
+.tna-date-search {
+  max-width: 100%;
+  padding: 0 spacing.space(0.375);
+
+  display: block;
+  box-sizing: border-box;
+
+  line-height: 2rem;
+
+  @include colour.colour-input;
+
+  @include borders.rounded-border;
+
+  .tna-form-item--error & {
+    @include colour.colour-border("form-error-border");
+  }
+
+  &--max-width {
+    width: 100%;
+  }
+}

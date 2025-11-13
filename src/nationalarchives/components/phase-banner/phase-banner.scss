@@ -1,0 +1,29 @@
+@use "../../tools/colour";
+@use "../../tools/media";
+@use "../../tools/spacing";
+@use "../../tools/typography";
+
+.tna-phase-banner {
+  @include colour.contrast;
+
+  padding-top: spacing.space(0.5);
+  padding-bottom: spacing.space(0.5);
+
+  @include typography.font-size(16);
+
+  .tna-container {
+    align-items: center;
+  }
+
+  &__phase {
+    @include typography.main-font-weight-bold;
+    text-transform: uppercase;
+  }
+
+  &__message {
+  }
+
+  @include colour.on-high-contrast-and-forced-colours {
+    @include colour.colour-border("keyline", 1px, solid, bottom);
+  }
+}

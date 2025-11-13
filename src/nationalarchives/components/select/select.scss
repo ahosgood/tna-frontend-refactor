@@ -1,0 +1,49 @@
+@use "../../variables/forms" as formsVars;
+@use "../../tools/borders";
+@use "../../tools/colour";
+@use "../../tools/spacing";
+
+.tna-select {
+  max-width: 100%;
+  height: calc(2rem + 6px);
+  padding: 0 spacing.space(1) 0 spacing.space(0.5);
+
+  display: block;
+
+  line-height: 2rem;
+
+  @include colour.colour-input;
+
+  @include borders.rounded-border;
+
+  // &--styled {
+  //   padding: 0 spacing.space(2.5) 0 spacing.space(0.75);
+
+  //   appearance: none;
+
+  //   background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUwMHB4IiBoZWlnaHQ9IjUwMHB4IiB2aWV3Qm94PSIwIDAgNTAwIDUwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNTAwIDUwMCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gcG9pbnRzPSIyNTAsNDAwIDUwLDEwMCA0NTAsMTAwIiBmaWxsPSIjMDAwIi8+PC9zdmc+");
+  //   background-position: center right 0.5rem;
+  //   background-size: 0.75rem 0.75rem;
+  //   background-repeat: no-repeat;
+  // }
+
+  .tna-form-item--error & {
+    @include colour.colour-border("form-error-border");
+  }
+
+  &--s {
+    width: 10rem;
+  }
+
+  &--m {
+    width: 20rem;
+  }
+
+  &--l {
+    width: 40rem;
+  }
+
+  &--xl {
+    width: 80rem;
+  }
+}

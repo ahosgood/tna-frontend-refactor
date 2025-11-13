@@ -1,0 +1,90 @@
+@use "sass:math";
+@use "../../variables/borders" as bordersVars;
+@use "../../tools/borders";
+@use "../../tools/colour";
+@use "../../tools/media";
+@use "../../tools/spacing";
+@use "../../tools/typography";
+
+.tna-index-grid {
+  @include spacing.space-above;
+
+  &__heading {
+  }
+
+  &__items {
+    @include spacing.space-above;
+
+    margin-bottom: 0;
+
+    display: flex;
+    gap: spacing.space(2) 0;
+
+    list-style: none;
+  }
+
+  &__item {
+    @include colour.contrast;
+
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+
+    text-decoration: none;
+
+    @include borders.rounded-border;
+
+    .tna-background-contrast & {
+      @include colour.accent;
+    }
+
+    @include colour.on-high-contrast-and-forced-colours {
+      @include colour.colour-border("keyline-dark", 1px);
+    }
+  }
+
+  &__item-image {
+    width: 100%;
+    height: auto;
+
+    @include colour.image-loader-background;
+
+    pointer-events: none;
+
+    border-radius: bordersVars.$rounded-border-radius
+      bordersVars.$rounded-border-radius 0 0;
+  }
+
+  &__item-content {
+    padding: spacing.space(1);
+
+    flex: 1;
+  }
+
+  &__item-label {
+    position: absolute;
+    top: spacing.space(0.5);
+    left: spacing.space(0.5);
+  }
+
+  &__item-title {
+    @include typography.main-font-weight-bold;
+    text-decoration: underline;
+
+    .tna-index-grid__item:hover & {
+      &,
+      &:link,
+      &:visited {
+        @include typography.interacted-text-decoration;
+      }
+    }
+  }
+
+  &__item-subtitle {
+    @include colour.colour-font("font-light");
+    @include typography.font-size(16);
+  }
+}

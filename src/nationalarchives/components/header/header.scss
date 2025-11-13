@@ -1,0 +1,483 @@
+@use "sass:math";
+@use "../../tools/colour";
+@use "../../tools/grid";
+@use "../../tools/media";
+@use "../../tools/spacing";
+@use "../../tools/typography";
+
+.tna-header {
+  @include colour.contrast;
+
+  position: relative;
+
+  background: linear-gradient(
+    0deg,
+    rgb(34 34 34 / 100%) 0%,
+    rgb(0 0 0 / 100%) 100%
+  );
+
+  .tna-template--dark-theme & {
+    background: colour.brand-colour("black");
+  }
+
+  .tna-template--system-theme & {
+    @media (prefers-color-scheme: dark) {
+      background: colour.brand-colour("black");
+    }
+  }
+
+  @include colour.on-high-contrast {
+    background: colour.brand-colour("black");
+  }
+
+  &__contents {
+    &.tna-container {
+      justify-content: space-between;
+    }
+  }
+
+  &__logo-wrapper {
+    padding-top: spacing.space(1.25);
+    padding-bottom: spacing.space(1.25);
+  }
+
+  &__logo {
+    display: flex;
+    align-items: flex-end;
+
+    color: inherit;
+    text-decoration: none;
+
+    &--link {
+      &,
+      &:link,
+      &:visited {
+        color: inherit;
+      }
+
+      &:hover:not(:focus) {
+        text-decoration: none;
+
+        @include colour.colour-outline("font-dark", 0.3125rem, solid);
+        outline-offset: 1px;
+      }
+    }
+  }
+
+  &__logo-strapline {
+    margin: 0 spacing.space(0.75);
+
+    display: inline-block;
+
+    line-height: 1.625rem;
+    @include typography.heading-font;
+    @include typography.font-size(20);
+    text-transform: uppercase;
+  }
+
+  &__navigation-button-wrapper {
+    align-self: center;
+
+    display: none;
+  }
+
+  &__hamburger {
+    width: 2rem;
+    height: 0.25rem;
+
+    display: inline-block;
+
+    @include colour.colour-background("font-dark");
+
+    &::before,
+    &::after {
+      content: "";
+
+      width: 2rem;
+      height: 0.25rem;
+
+      display: block;
+
+      position: absolute;
+      right: 0;
+
+      background-color: inherit;
+    }
+
+    &::before {
+      top: 0;
+    }
+
+    &::after {
+      bottom: 0;
+    }
+  }
+
+  &__navigation-button {
+    height: 2rem;
+    padding: 0;
+
+    appearance: none;
+
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    position: relative;
+
+    color: inherit;
+    @include typography.main-font-weight-bold;
+    @include typography.font-size(16);
+
+    background: none;
+
+    border: 0 transparent solid;
+    border-width: 0.25rem 0;
+    border-radius: 0.1px;
+
+    cursor: pointer;
+
+    &:hover {
+      @include typography.interacted-text-decoration;
+    }
+
+    &--opened {
+      .tna-header__hamburger {
+        height: 0;
+
+        &::before {
+          top: 0.625rem;
+
+          transform: rotate(-135deg);
+        }
+
+        &::after {
+          bottom: 0.625rem;
+
+          transform: rotate(135deg);
+        }
+      }
+    }
+  }
+
+  &__navigation {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    position: relative;
+    z-index: 2;
+  }
+
+  &__top-navigation-items {
+    margin: 0;
+    padding: spacing.space(1.25) 0;
+
+    display: flex;
+    justify-content: flex-end;
+    gap: spacing.space(0.5) spacing.space(1.5);
+
+    line-height: 1;
+
+    list-style: none;
+
+    @include typography.font-size(15);
+  }
+
+  &__top-navigation-item {
+    display: block;
+  }
+
+  &__top-navigation-item-link {
+    display: flex;
+    align-items: center;
+
+    text-decoration: none;
+
+    &,
+    &:link,
+    &:visited {
+      @include colour.colour-font("font-light");
+    }
+
+    &:hover,
+    &:focus-visible,
+    &--selected {
+      &,
+      &:link,
+      &:visited {
+        @include colour.colour-font("font-base");
+      }
+    }
+
+    &:hover,
+    &--selected {
+      @include typography.interacted-text-decoration;
+    }
+
+    .fa-solid {
+      margin-right: spacing.space(0.375);
+    }
+  }
+
+  &__navigation-items {
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-wrap: nowrap;
+    gap: spacing.space(2);
+
+    white-space: nowrap;
+
+    list-style: none;
+  }
+
+  &__navigation-item {
+  }
+
+  &__navigation-item-link {
+    padding: spacing.space(0.5) 0;
+
+    display: inline-block;
+
+    position: relative;
+
+    line-height: 2;
+    text-decoration: none;
+
+    @include typography.main-font-weight-medium;
+
+    &::after {
+      content: "";
+
+      height: 0;
+
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      @include colour.colour-background("font-dark");
+    }
+
+    &,
+    &:link,
+    &:visited {
+      color: inherit;
+    }
+
+    &--selected {
+      &::after {
+        @include colour.thick-keyline-dark(top);
+      }
+    }
+  }
+
+  &.tna-background-accent {
+    background: colour.colour-var("background");
+  }
+
+  &.tna-background-accent &__navigation {
+    @include colour.contrast-on-mobile;
+  }
+
+  .tna-logo {
+    width: 5rem;
+    height: 5rem;
+
+    display: inline-block;
+
+    flex-shrink: 0;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @include media.on-mobile {
+    &__logo-wrapper {
+      padding-top: spacing.space(1);
+      padding-bottom: spacing.space(1);
+    }
+
+    &__contents {
+      &.tna-container {
+        padding-right: 0;
+        padding-left: 0;
+      }
+    }
+
+    &__navigation-button-wrapper {
+      display: block;
+
+      &.tna-column {
+        padding-left: 0;
+      }
+    }
+
+    &__navigation {
+      flex-direction: column;
+      align-items: stretch;
+
+      &.tna-column {
+        padding-right: 0;
+        padding-left: 0;
+      }
+    }
+
+    &__top-navigation-items {
+      padding: spacing.space(0.5) spacing.space(1);
+
+      justify-content: flex-start;
+
+      @include colour.colour-border("keyline", 1px, solid, bottom);
+    }
+
+    &__top-navigation-item {
+      margin: 0;
+    }
+
+    &__top-navigation-item-link {
+      padding: spacing.space(0.5) 0;
+
+      &,
+      &:link,
+      &:visited {
+        @include colour.colour-font("font-light");
+      }
+
+      &:hover,
+      &:focus-visible {
+        @include colour.colour-font("font-dark");
+      }
+    }
+
+    &__navigation-items {
+      width: 100%;
+
+      flex-direction: column;
+      gap: 0;
+
+      background-color: rgb(255 255 255 / 10%);
+
+      @include colour.colour-border("keyline-dark", 2px, solid, top);
+      @include colour.colour-border("keyline-dark", 2px, solid, bottom);
+    }
+
+    &__navigation-item {
+      margin: 0;
+
+      display: block;
+
+      @include colour.colour-border("keyline", 1px, solid, top);
+
+      &:first-child {
+        border-top: none;
+      }
+    }
+
+    &__navigation-item-link {
+      display: block;
+
+      line-height: 1.75rem;
+
+      &::after {
+        width: 0;
+        height: auto;
+
+        top: 0;
+        right: auto;
+      }
+
+      &--selected {
+        &::after {
+          @include colour.colour-border("keyline", 0.5rem, solid, left);
+        }
+      }
+    }
+  }
+
+  @include media.on-small {
+    .tna-logo {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    &__logo-strapline {
+      line-height: 1.25rem;
+    }
+
+    &__logo-wrapper,
+    &__navigation-item-link,
+    &__navigation-button-wrapper {
+      padding-right: grid.gutter-width();
+    }
+
+    &__logo-wrapper,
+    &__navigation-item-link {
+      padding-left: grid.gutter-width();
+    }
+
+    &__top-navigation-items {
+      padding-right: grid.gutter-width();
+      padding-left: grid.gutter-width();
+    }
+  }
+
+  @include media.on-tiny {
+    &__navigation-button-wrapper,
+    &__logo-wrapper {
+      padding-right: grid.gutter-width-tiny();
+    }
+
+    &__logo-wrapper {
+      padding-left: grid.gutter-width-tiny();
+    }
+
+    .tna-logo {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+
+    &__logo-strapline {
+      font-size: 0.9rem;
+      line-height: 1.25;
+    }
+
+    &__navigation-button {
+      @include typography.font-size(14);
+    }
+
+    &__top-navigation-items {
+      gap: 0.5rem;
+    }
+
+    &__navigation-item-link {
+      padding-right: grid.gutter-width-tiny();
+      padding-left: calc(#{grid.gutter-width-tiny()} + 0.5rem);
+    }
+  }
+
+  @include colour.on-high-contrast-and-forced-colours {
+    @include colour.colour-border("keyline", 1px, solid, bottom);
+  }
+
+  @include colour.on-forced-colours {
+    &__navigation-button {
+      height: auto;
+
+      line-height: 2;
+      @include typography.font-size(18);
+      @include typography.main-font-weight-bold;
+
+      border: none;
+    }
+
+    &__hamburger {
+      display: none;
+    }
+  }
+}

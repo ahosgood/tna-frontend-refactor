@@ -1,0 +1,28 @@
+[
+  {
+    "name": "text",
+    "type": "string",
+    "required": false,
+    "default": "Skip to main content",
+    "description": "If set, the text to appear in the skip link."
+  },
+  {
+    "name": "href",
+    "type": "string",
+    "required": false,
+    "default": "#main-content",
+    "description": "If set, the ID of the element to skip to."
+  },
+  {
+    "name": "classes",
+    "type": "string",
+    "required": false,
+    "description": "Classes to add to the skip link."
+  },
+  {
+    "name": "attributes",
+    "type": "object",
+    "required": false,
+    "description": "HTML attributes (for example data attributes) to add to the skip link."
+  }
+]

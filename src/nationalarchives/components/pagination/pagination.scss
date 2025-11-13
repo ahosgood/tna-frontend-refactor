@@ -1,0 +1,103 @@
+@use "sass:math";
+@use "../../tools/colour";
+@use "../../tools/media";
+@use "../../tools/spacing";
+@use "../../tools/typography";
+
+.tna-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: spacing.space(1);
+
+  @include spacing.space-above;
+
+  &--spaced {
+    justify-content: space-between;
+  }
+
+  &__prev {
+  }
+
+  &__next {
+  }
+
+  &__link {
+    min-width: 1.5rem;
+    padding-right: spacing.space(0.5);
+    padding-left: spacing.space(0.5);
+  }
+
+  &__icon {
+    display: inline-block;
+
+    path {
+      fill: currentColor;
+    }
+
+    &--prev {
+      margin-left: spacing.space(0.5);
+    }
+
+    &--next {
+      margin-right: spacing.space(0.5);
+    }
+  }
+
+  &__link-title {
+    padding-right: spacing.space(0.5);
+    padding-left: spacing.space(0.5);
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    gap: spacing.space(0.25);
+
+    list-style: none;
+  }
+
+  &__item {
+    &--ellipses {
+      min-width: 2rem;
+      padding: spacing.space(0.5);
+
+      text-align: center;
+    }
+
+    &--current {
+    }
+  }
+
+  &__item--current &__link {
+    .tna-background-accent & {
+    }
+  }
+
+  &__current-item-text {
+    margin-top: 0;
+
+    @include typography.main-font-weight-medium;
+  }
+
+  @include media.on-mobile {
+    flex-direction: column;
+  }
+
+  @include media.on-tiny {
+    &__item {
+      display: none;
+
+      &:first-child,
+      &:last-child,
+      &--current,
+      &--ellipses {
+        display: block;
+      }
+    }
+  }
+}

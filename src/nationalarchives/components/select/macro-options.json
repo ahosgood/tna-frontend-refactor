@@ -1,0 +1,109 @@
+[
+  {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "description": "The label for the select field."
+  },
+  {
+    "name": "headingLevel",
+    "type": "number",
+    "required": false,
+    "description": "The heading level which represents an element from `<h1>` through to `<h6>`. Leave blank or set to `0` to use a plain `<label>` element with no heading."
+  },
+  {
+    "name": "headingSize",
+    "type": "string",
+    "required": false,
+    "description": "The physical size of the select title (`xl`, `l`, `m`, `s` or `xs`).",
+    "default": "m"
+  },
+  {
+    "name": "id",
+    "type": "string",
+    "required": true,
+    "description": "A unique ID for the select component."
+  },
+  {
+    "name": "name",
+    "type": "string",
+    "required": true,
+    "description": "The name of the form field."
+  },
+  {
+    "name": "hint",
+    "type": "string",
+    "required": false,
+    "description": "An optional hint to display above the form field."
+  },
+  {
+    "name": "error",
+    "type": "object",
+    "required": false,
+    "description": "If set, the details of any errors.",
+    "params": [
+      {
+        "name": "text",
+        "type": "string",
+        "required": true,
+        "description": "The error text to display."
+      }
+    ]
+  },
+  {
+    "name": "items",
+    "type": "array",
+    "required": true,
+    "description": "",
+    "params": [
+      {
+        "name": "text",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": true,
+        "description": "The form field value."
+      }
+    ]
+  },
+  {
+    "name": "selected",
+    "type": "string",
+    "required": false,
+    "description": ""
+  },
+  {
+    "name": "size",
+    "type": "string",
+    "required": false,
+    "description": ""
+  },
+  {
+    "name": "formItemClasses",
+    "type": "string",
+    "required": false,
+    "description": "Classes to add to the select form group."
+  },
+  {
+    "name": "formItemAttributes",
+    "type": "object",
+    "required": false,
+    "description": "HTML attributes (for example data attributes) to add to the select form group."
+  },
+  {
+    "name": "classes",
+    "type": "string",
+    "required": false,
+    "description": "Classes to add to the select."
+  },
+  {
+    "name": "attributes",
+    "type": "object",
+    "required": false,
+    "description": "HTML attributes (for example data attributes) to add to the select."
+  }
+]

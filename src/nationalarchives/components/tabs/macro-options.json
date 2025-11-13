@@ -1,0 +1,46 @@
+[
+  {
+    "name": "itemHeadingLevel",
+    "type": "number",
+    "required": true,
+    "description": "The heading level which represents an element from `<h1>` through to `<h6>` for each of the tab items."
+  },
+  {
+    "name": "items",
+    "type": "array",
+    "required": true,
+    "description": "",
+    "params": [
+      {
+        "name": "id",
+        "type": "string",
+        "required": true,
+        "description": "A unique ID for the tabs item."
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "body",
+        "type": "string",
+        "required": true,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "classes",
+    "type": "string",
+    "required": false,
+    "description": "Classes to add to the tabs."
+  },
+  {
+    "name": "attributes",
+    "type": "object",
+    "required": false,
+    "description": "HTML attributes (for example data attributes) to add to the tabs."
+  }
+]
