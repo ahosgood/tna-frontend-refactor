@@ -12,6 +12,9 @@ export default {
     name: "@storybook/html-vite",
     options: {},
   },
+  features: {
+    // developmentModeForBuild: true,
+  },
   async viteFinal(config, { configType }) {
     const { mergeConfig } = await import("vite");
 

@@ -1,15 +1,18 @@
 import "./storybook.scss";
+import { a11yConfig } from "./storybook-config";
+import { customViewports } from "./viewports";
 
 /** @type { import('@storybook/html-vite').Preview } */
 export default {
-  // parameters: {
-  //   controls: {
-  //     matchers: {
-  //      color: /(background|color)$/i,
-  //      date: /Date$/i,
-  //     },
-  //   },
-  // },
+  parameters: {
+    viewport: { options: customViewports },
+    options: { showPanel: true },
+    a11y: {
+      config: a11yConfig,
+      test: "error",
+    },
+  },
+  tags: ["autodocs"],
 };
 
 document.documentElement.classList.add(
