@@ -215,8 +215,7 @@ export default class Cookies {
   get policies() {
     try {
       return JSON.parse(this.get(this.policiesKey) || "{}");
-    } catch (e) {
-      console.error("Error parsing cookie policies:", e);
+    } catch {
       return {};
     }
   }

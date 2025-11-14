@@ -1,10 +1,10 @@
-const { globSync } = require("glob");
-var fs = require("fs");
-const nunjucks = require("nunjucks");
+import { globSync } from "glob";
+import fs from "fs";
+import nunjucks from "nunjucks";
 
-require.extensions[".njk"] = function (module, filename) {
-  module.exports = fs.readFileSync(filename, "utf8");
-};
+// require.extensions[".njk"] = function (module, filename) {
+//   module.exports = fs.readFileSync(filename, "utf8");
+// };
 
 nunjucks.configure(__dirname + "/../src");
 
@@ -61,40 +61,41 @@ components.forEach((component) => {
   }
 });
 
-const templatesDirectory = "src/nationalarchives/templates/";
-const templateFixturesFile = `${templatesDirectory}fixtures.json`;
-const templateFixtures = require(`../${templateFixturesFile}`);
-const newTemplateFixtures = {
-  ...templateFixtures,
-  fixtures: templateFixtures.fixtures.map((fixture) => ({
-    ...fixture,
-    html: nunjucks
-      .renderString(
-        require(`../${templatesDirectory}${fixture.template}`),
-        fixture.options,
-      )
-      .trim()
-      .replace(/>\n\s*/g, ">")
-      .replace(/\n\s*</g, "<"),
-  })),
-};
-const allFixtureDifferences = newTemplateFixtures.fixtures.reduce(
-  (differences, fixture) =>
-    fixture.html !==
-    templateFixtures.fixtures.find((f) => f.name === fixture.name)?.html
-      ? differences + 1
-      : differences,
-  0,
-);
-if (allFixtureDifferences) {
-  fs.writeFile(
-    templateFixturesFile,
-    `${JSON.stringify(newTemplateFixtures, null, 2).trim()}\n`,
-    (err) => {
-      if (err) throw err;
-      console.log(
-        `${allFixtureDifferences} template fixture(s) updated successfully`,
-      );
-    },
-  );
-}
+// TODO
+// const templatesDirectory = "src/nationalarchives/templates/";
+// const templateFixturesFile = `${templatesDirectory}fixtures.json`;
+// const templateFixtures = require(`../${templateFixturesFile}`);
+// const newTemplateFixtures = {
+//   ...templateFixtures,
+//   fixtures: templateFixtures.fixtures.map((fixture) => ({
+//     ...fixture,
+//     html: nunjucks
+//       .renderString(
+//         require(`../${templatesDirectory}${fixture.template}`),
+//         fixture.options,
+//       )
+//       .trim()
+//       .replace(/>\n\s*/g, ">")
+//       .replace(/\n\s*</g, "<"),
+//   })),
+// };
+// const allFixtureDifferences = newTemplateFixtures.fixtures.reduce(
+//   (differences, fixture) =>
+//     fixture.html !==
+//     templateFixtures.fixtures.find((f) => f.name === fixture.name)?.html
+//       ? differences + 1
+//       : differences,
+//   0,
+// );
+// if (allFixtureDifferences) {
+//   fs.writeFile(
+//     templateFixturesFile,
+//     `${JSON.stringify(newTemplateFixtures, null, 2).trim()}\n`,
+//     (err) => {
+//       if (err) throw err;
+//       console.log(
+//         `${allFixtureDifferences} template fixture(s) updated successfully`,
+//       );
+//     },
+//   );
+// }

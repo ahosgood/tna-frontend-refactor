@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   extends: ["stylelint-config-standard-scss"],
   plugins: ["stylelint-selector-bem-pattern", "stylelint-order"],
   ignoreFiles: ["src/nationalarchives/lib/font-awesome/**/*.scss"],

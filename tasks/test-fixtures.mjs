@@ -1,7 +1,7 @@
-const { globSync } = require("glob");
-const Diff = require("diff");
-const { pass, fail } = require("./lib/passfail");
-const { renderNunjucks } = require("./lib/nunjucks");
+import { globSync } from "glob";
+import { renderNunjucks } from "./lib/nunjucks.mjs";
+import { Diff } from "diff";
+import { pass, fail } from "./lib/passfail.mjs";
 
 const componentsDirectory = "src/nationalarchives/components/";
 const componentFixturesFile = "/fixtures.json";

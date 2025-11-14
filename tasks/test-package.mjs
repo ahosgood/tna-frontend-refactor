@@ -1,16 +1,20 @@
 import fs from "fs";
 import packageJson from "../package.json" with { type: "json" };
 import jsdom from "jsdom";
-import { pass, fail } from "./lib/passfail.js";
-// require("node-self");
+import { pass, fail } from "./lib/passfail.mjs";
+// import "node-self";
+import compiledPackageJson from "../package/package.json" with { type: "json" };
+import compiledPackageLockJson from "../package/package-lock.json" with { type: "json" };
+
+import prototypeKitConfig from "../package/govuk-prototype-kit.config.json" with { type: "json" };
 
 const componentsWithJavaScript = {};
 
 const componentJavascriptFiles = (component, javascriptClass) => {
   componentsWithJavaScript[component] = javascriptClass;
   return [
-    `nationalarchives/components/${component}/${component}.js`,
-    `nationalarchives/components/${component}/${component}.js.map`,
+    // `nationalarchives/components/${component}/${component}.js`,
+    // `nationalarchives/components/${component}/${component}.js.map`,
     `nationalarchives/components/${component}/${component}.mjs`,
   ];
 };
@@ -29,7 +33,6 @@ const componentFiles = (component, javascriptClass = null) => [
     : []),
 ];
 
-const packageDirectory = "package";
 const checkExists = [
   // Root files
   "package.json",
@@ -53,6 +56,7 @@ const checkExists = [
   "nationalarchives/ie.css",
   "nationalarchives/ie.css.map",
   "nationalarchives/ie.scss",
+  "nationalarchives/main.mjs",
   "nationalarchives/print.css",
   "nationalarchives/print.css.map",
   "nationalarchives/prototype-kit.css",
@@ -167,15 +171,15 @@ const checkExists = [
   "nationalarchives/templates/list.njk",
   "nationalarchives/templates/plain.njk",
   // Config
-  "config/.babelrc.json",
-  "config/.eslintrc.js",
+  // "config/.babelrc.json",
+  "config/eslint.config.mjs",
   "config/.htmlvalidate.json",
   "config/stylelint.config.js",
 ];
 
 console.log("Testing package file structure...");
 checkExists.forEach((checkFile) => {
-  const checkFilePath = `${packageDirectory}/${checkFile}`;
+  const checkFilePath = `package/${checkFile}`;
   try {
     fs.accessSync(checkFilePath);
     pass(
@@ -193,8 +197,6 @@ checkExists.forEach((checkFile) => {
 console.log("\n");
 
 console.log("Testing package version...");
-const compiledPackageJson = require("../package/package.json");
-const compiledPackageLockJson = require("../package/package-lock.json");
 if (packageJson.version === compiledPackageJson.version) {
   pass(`Version ${packageJson.version} is set in the package`);
 } else {
@@ -224,9 +226,6 @@ const expectedPrototypeKitConfigProperties = [
   "stylesheets",
   "templates",
 ];
-const prototypeKitConfig = require(
-  `../${packageDirectory}/govuk-prototype-kit.config.json`,
-);
 expectedPrototypeKitConfigProperties.forEach(
   (expectedPrototypeKitConfigProperty) => {
     if (
@@ -267,69 +266,63 @@ Object.defineProperty(window, "matchMedia", {
 });
 global.window = window;
 global.document = window.document;
-["all.js", "analytics.js", "all+analytics.js"].forEach((file) => {
-  const jsAllPackage = require(`../package/nationalarchives/${file}`);
-  let exports = [];
-  if (file === "all.js" || file === "all+analytics.js") {
-    exports = [
-      ...exports,
+const filesToTest = [
+  {
+    file: "main.mjs",
+    expectedExports: [
       { name: "initAll", type: "function" },
       { name: "Cookies", type: "function" },
-    ];
-    Object.keys(componentsWithJavaScript).forEach((component) => {
-      const componentClass = componentsWithJavaScript[component];
-      if (
-        Object.keys(jsAllPackage).includes(componentClass) &&
-        typeof jsAllPackage[componentClass] === "function"
-      ) {
-        pass(`${file} function exists: ${componentClass}()`);
-      } else {
-        fail(`${file} function missing: ${componentClass}()`);
-        process.exitCode = 1;
-        throw new Error("Component JavaScript test failed");
-      }
-    });
-  }
-  if (file === "analytics.js" || file === "all+analytics.js") {
-    exports = [
-      ...exports,
+      ...Object.keys(componentsWithJavaScript).map((componentKey) => ({
+        name: componentsWithJavaScript[componentKey],
+        type: "function",
+      })),
+    ],
+  },
+  {
+    file: "analytics.mjs",
+    expectedExports: [
       { name: "EventTracker", type: "function" },
       { name: "GA4", type: "function" },
       { name: "helpers", type: "object" },
-    ];
-  }
-  exports.forEach((eachExport) => {
-    if (
-      Object.keys(jsAllPackage).includes(eachExport.name) &&
-      typeof jsAllPackage[eachExport.name] === eachExport.type
-    ) {
-      pass(
-        `${file} ${eachExport.type} exists: ${eachExport.name}${eachExport.type === "function" ? "()" : ""}`,
-      );
-    } else {
-      fail(
-        `${file} ${eachExport.type} missing: ${eachExport.name}${eachExport.type === "function" ? "()" : ""}`,
-      );
-      process.exitCode = 1;
-      throw new Error("JavaScript test failed");
-    }
+    ],
+  },
+];
+await filesToTest.forEach(async ({ file, expectedExports }) => {
+  await import(`../package/nationalarchives/${file}`).then((importedFile) => {
+    expectedExports.forEach((eachExport) => {
+      if (
+        Object.keys(importedFile).includes(eachExport.name) &&
+        typeof importedFile[eachExport.name] === eachExport.type
+      ) {
+        pass(
+          `${file} ${eachExport.type} exists: ${eachExport.name}${eachExport.type === "function" ? "()" : ""}`,
+        );
+      } else {
+        fail(
+          `${file} ${eachExport.type} missing: ${eachExport.name}${eachExport.type === "function" ? "()" : ""}`,
+        );
+        process.exitCode = 1;
+        throw new Error("JavaScript test failed");
+      }
+    });
   });
-});
-Object.keys(componentsWithJavaScript).forEach((component) => {
-  const componentClass = componentsWithJavaScript[component];
-  const jsComponentPackage = require(
-    `../package/nationalarchives/components/${component}/${component}.js`,
-  );
-  if (
-    Object.keys(jsComponentPackage).includes(componentClass) &&
-    typeof jsComponentPackage[componentClass] === "function"
-  ) {
-    pass(`${component}.js function exists: ${componentClass}()`);
-  } else {
-    fail(`${component}.js function missing: ${componentClass}()`);
-    process.exitCode = 1;
-    throw new Error("Standalone component JavaScript test failed");
-  }
+  await Object.keys(componentsWithJavaScript).forEach(async (component) => {
+    await import(
+      `../package/nationalarchives/components/${component}/${component}.mjs`
+    ).then((jsComponentPackage) => {
+      const componentClass = componentsWithJavaScript[component];
+      if (
+        Object.keys(jsComponentPackage).includes(componentClass) &&
+        typeof jsComponentPackage[componentClass] === "function"
+      ) {
+        pass(`${component}.mjs function exists: ${componentClass}()`);
+      } else {
+        fail(`${component}.mjs function missing: ${componentClass}()`);
+        process.exitCode = 1;
+        throw new Error("Standalone component JavaScript test failed");
+      }
+    });
+  });
 });
 
 console.log("\n");
@@ -366,7 +359,7 @@ const cssFilesToCheckSize = [
   "print.css",
   "ie.css",
 ];
-const jsFilesToCheckSize = ["all.js", "analytics.js", "all+analytics.js"];
+const jsFilesToCheckSize = ["all.js"];
 const longestFilenameToCheckSize = [
   ...cssFilesToCheckSize,
   ...jsFilesToCheckSize,

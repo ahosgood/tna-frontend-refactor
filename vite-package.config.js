@@ -27,12 +27,16 @@ const config = mergeConfig(baseConfig, {
           dest: "nationalarchives/assets/fonts",
         },
         {
-          src: "../package.json",
+          src: ["../package.json", "../package-lock.json", "../README.md"],
           dest: ".",
         },
         {
-          src: "../README.md",
-          dest: ".",
+          src: [
+            "../eslint.config.mjs",
+            "../.htmlvalidate.json",
+            "../stylelint.config.js",
+          ],
+          dest: "./config",
         },
         // {
         //   src: "**/*.njk",

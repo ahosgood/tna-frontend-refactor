@@ -6,13 +6,13 @@ import {
   beforeEach,
   afterEach,
 } from "@jest/globals";
-import { TextEncoder, TextDecoder, store, options } from "util";
+// import { TextEncoder, TextDecoder, store, options } from "util";
 import Cookies from "../src/nationalarchives/lib/cookies.mjs";
 
-global.TextEncoder = TextEncoder;
-global.TextDecoder = TextDecoder;
-global.store = store;
-global.options = options;
+// global.TextEncoder = TextEncoder;
+// global.TextDecoder = TextDecoder;
+// global.store = store;
+// global.options = options;
 
 const addCookiesToDocument = (document) => {
   let _cookies = {};
