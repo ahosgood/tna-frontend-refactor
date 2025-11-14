@@ -17,7 +17,7 @@
     "test:package": "node tasks/test-package.mjs",
     "test:storybook": "vitest run",
     "test:unit": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose",
-    "update:fixtures": "node tasks/update-fixtures.js"
+    "update:fixtures": "node tasks/update-fixtures.mjs"
   },
   "repository": {
     "type": "git",
