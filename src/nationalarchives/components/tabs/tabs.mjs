@@ -28,14 +28,16 @@ export class Tabs {
     this.$tabListItemLinks.forEach(($tabListItemLink) => {
       const tabPanelID = $tabListItemLink.getAttribute("aria-controls");
       $tabListItemLink.setAttribute("aria-selected", false);
-      const $tabPanel = document.getElementById(tabPanelID);
-      $tabPanel.setAttribute("aria-labelledby", $tabListItemLink.id);
-      $tabPanel.setAttribute("role", "tabpanel");
-      $tabListItemLink.addEventListener(
-        "click",
-        (e) => this.handleItemLinkClick(e),
-        true,
-      );
+      const $tabPanel = this.$module.querySelector(`#${tabPanelID}`);
+      if ($tabPanel) {
+        $tabPanel.setAttribute("aria-labelledby", $tabListItemLink.id);
+        $tabPanel.setAttribute("role", "tabpanel");
+        $tabListItemLink.addEventListener(
+          "click",
+          (e) => this.handleItemLinkClick(e),
+          true,
+        );
+      }
     });
     this.switchTabByIndex(this.currentTabIndex);
     this.$module.addEventListener("keydown", (e) =>

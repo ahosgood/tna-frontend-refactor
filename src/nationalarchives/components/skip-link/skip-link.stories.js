@@ -24,21 +24,23 @@ export default {
   parameters: {
     chromatic: { delay: 1000 },
   },
-  render: (
-    params,
-  ) => `<p>To view the skip link component tab to this example, or click inside this example and press tab.</p>
-  ${
-    render(
-      Template,
-      {
-        params,
-      },
-      SkipLink,
-    ).outerHTML
-  }
-  <main class="tna-main" id="main-content">
-    <h1>Main content</h1>
-  </main>`,
+  render: (params) => render(Template, { params }, SkipLink),
+  decorators: [
+    (Story) => {
+      const container = document.createElement("div");
+      const explainer = document.createElement("p");
+      explainer.innerText =
+        "To view the skip link component tab to this example, or click inside this example and press tab.";
+      const mainContent = document.createElement("main");
+      mainContent.setAttribute("id", "main-content");
+      mainContent.classList.add("tna-main");
+      mainContent.innerHTML = "<h1>Main content</h1>";
+      container.appendChild(explainer);
+      container.appendChild(Story());
+      container.appendChild(mainContent);
+      return container;
+    },
+  ],
 };
 
 export const Standard = {
