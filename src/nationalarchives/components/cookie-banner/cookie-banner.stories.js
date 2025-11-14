@@ -27,7 +27,7 @@ export default {
       },
     ]),
   ),
-  render: (params) => render(Template, params, CookieBanner),
+  render: (params) => render(Template, { params }, CookieBanner),
 };
 
 export const Standard = {

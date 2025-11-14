@@ -1,13 +1,12 @@
-const fs = require("fs");
-const { renderNunjucks } = require("../lib/nunjucks");
-const packageJson = require("../../package.json");
+import fs from "fs";
+import renderNunjucksFile from "../lib/nunjucks.mjs";
+import packageJson from "../../package.json" with { type: "json" };
 
 const outputDirectory = "error-pages";
 if (!fs.existsSync(outputDirectory)) {
   fs.mkdirSync(outputDirectory);
 }
 
-const errorPageNunjucks = require("./template.njk");
 const compiledCSS = fs
   .readFileSync("package/nationalarchives/error-page.css", "utf8")
   .replace("/*# sourceMappingURL=all.css.map */", "");
@@ -44,15 +43,17 @@ const compiledCSSIE = fs
 <p>Try again in a few minutes.</p>`,
   },
 ].forEach((errorPage) => {
-  // eslint-disable-next-line no-unused-vars
   const { name, ...params } = errorPage;
-  const html = renderNunjucks(errorPageNunjucks, {
-    ...params,
-    tna_frontend_version: packageJson.version,
-  })
+  const html = renderNunjucksFile(
+    "nationalarchives/templates/error-page.njk",
+    {
+      ...params,
+      tna_frontend_version: packageJson.version,
+    },
+  )
     .replace("/* COMPILED_CSS */", compiledCSS)
     .replace("/* COMPILED_CSS_IE */", compiledCSSIE);
-  fs.writeFile(`${outputDirectory}/${errorPage.name}.html`, html, (err) => {
+  fs.writeFile(`${outputDirectory}/${name}.html`, html, (err) => {
     if (err) {
       return console.log(err);
     }

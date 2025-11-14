@@ -6,7 +6,7 @@
     "start": "storybook dev -p 6006",
     "build:storybook": "storybook build -o storybook",
     "build:package": "vite build --config vite-package.config.js && npm run compile:sass",
-    "build:errorpages": "node tasks/static-error-pages/generate.js",
+    "build:errorpages": "node tasks/static-error-pages/generate.mjs",
     "compile:sass": "sass --style=compressed --load-path=node_modules --embed-sources src/nationalarchives:package/nationalarchives",
     "compile:scripts": "webpack",
     "lint:fix": "prettier --write --list-different '{src,.storybook,tasks,.}/**/*.{js,mjs,scss,json,html,md}' && stylelint --fix 'src/**/*.scss' && eslint --fix",

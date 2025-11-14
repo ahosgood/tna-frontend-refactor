@@ -1,8 +1,6 @@
 import { globSync } from "glob";
 import fs from "fs";
-import nunjucks from "nunjucks";
-
-nunjucks.configure("src");
+import renderNunjucksFile from "./lib/nunjucks.mjs";
 
 const componentsDirectory = "nationalarchives/components/";
 const componentFixturesFile = "/fixtures.json";
@@ -14,20 +12,19 @@ const components = globSync(
     .replace(new RegExp(`${componentFixturesFile}$`), ""),
 );
 await components.forEach(async (component) => {
-    import(`../src/${componentsDirectory}${component}${componentFixturesFile}`, {
-      with: { type: "json" },
-    }).then((componentFixtures) => {
+  import(`../src/${componentsDirectory}${component}${componentFixturesFile}`, {
+    with: { type: "json" },
+  }).then((componentFixtures) => {
     const newComponentFixtures = {
       ...componentFixtures.default,
       fixtures: componentFixtures.default.fixtures.map((fixture) => ({
         ...fixture,
-        html: nunjucks
-          .render(`${componentsDirectory}${component}/template.njk`, {
+        html: renderNunjucksFile(
+          `${componentsDirectory}${component}/template.njk`,
+          {
             params: fixture.options,
-          })
-          .trim()
-          .replace(/>\n\s*/g, ">")
-          .replace(/\n\s*</g, "<"),
+          },
+        ),
       })),
     };
 
@@ -65,11 +62,10 @@ await import(templateFixturesFile, {
     ...templateFixtures.default,
     fixtures: templateFixtures.default.fixtures.map((fixture) => ({
       ...fixture,
-      html: nunjucks
-        .render(`${templatesDirectory}${fixture.template}`, fixture.options)
-        .trim()
-        .replace(/>\n\s*/g, ">")
-        .replace(/\n\s*</g, "<"),
+      html: renderNunjucksFile(
+        `${templatesDirectory}${fixture.template}`,
+        fixture.options,
+      ),
     })),
   };
   const allFixtureDifferences = newTemplateFixtures.fixtures.reduce(

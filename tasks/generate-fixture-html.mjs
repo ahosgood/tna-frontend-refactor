@@ -28,6 +28,7 @@ components.forEach(async (component) => {
     }),
   ]).then(([componentFixtures, componentNunjucks]) => {
     componentFixtures.default.fixtures.forEach((fixture) => {
+      // TODO: Change render to not use a string
       const result = renderNunjucks(componentNunjucks, {
         params: fixture.options,
       });

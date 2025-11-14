@@ -1,14 +1,20 @@
 import nunjucks from "nunjucks";
 
-nunjucks.configure("src");
-
-const renderNunjucks = (string, params, trimWhitespace = false) =>
-  trimWhitespace
-    ? nunjucks
-        .renderString(string, params)
-        .trim()
-        .replace(/>\n\s*/g, ">")
-        .replace(/\n\s*</g, "<")
-    : nunjucks.renderString(string, params);
-
-export { nunjucks, renderNunjucks };
+export default function renderNunjucksFile(
+  file,
+  params,
+  trimWhitespace = true,
+) {
+  nunjucks.configure("src");
+  // console.log("Rendering Nunjucks file:", file, "with params:", params);
+  let result = nunjucks.render(file, params);
+  // console.log("Nunjucks render result:", result);
+  if (trimWhitespace) {
+    result = result
+      .replace(/^\s*|\s*$/g, "")
+      .trim()
+      .replace(/>\n\s*/g, ">")
+      .replace(/\n\s*</g, "<");
+  }
+  return result;
+}

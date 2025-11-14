@@ -28,7 +28,7 @@ export default {
       options: customViewports,
     },
   },
-  render: (params) => render(Template, params, Breadcrumbs),
+  render: (params) => render(Template, { params }, Breadcrumbs),
 };
 
 export const Standard = {

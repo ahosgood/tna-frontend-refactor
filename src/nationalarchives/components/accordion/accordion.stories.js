@@ -24,7 +24,7 @@ export default {
       },
     ]),
   ),
-  render: (params) => render(Template, params, Accordion),
+  render: (params) => render(Template, { params }, Accordion),
 };
 
 export const Standard = {
@@ -195,8 +195,8 @@ export const ToggleAllButton = {
     ...Standard.args,
     toggleAllButton: {
       enabled: true,
-      // openAllLabel: "Expand all",
-      // closeAllLabel: "Collapse all",
+      openAllLabel: "Expand all",
+      closeAllLabel: "Collapse all",
     },
   },
 };
