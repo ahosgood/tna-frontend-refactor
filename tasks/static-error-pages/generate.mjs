@@ -44,13 +44,10 @@ const compiledCSSIE = fs
   },
 ].forEach((errorPage) => {
   const { name, ...params } = errorPage;
-  const html = renderNunjucksFile(
-    "nationalarchives/templates/error-page.njk",
-    {
-      ...params,
-      tna_frontend_version: packageJson.version,
-    },
-  )
+  const html = renderNunjucksFile("nationalarchives/templates/error-page.njk", {
+    ...params,
+    tna_frontend_version: packageJson.version,
+  })
     .replace("/* COMPILED_CSS */", compiledCSS)
     .replace("/* COMPILED_CSS_IE */", compiledCSSIE);
   fs.writeFile(`${outputDirectory}/${name}.html`, html, (err) => {
