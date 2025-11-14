@@ -11,6 +11,8 @@ export default {
       config: a11yConfig,
       test: "error",
     },
+    // layout: 'centered',
+    // layout: 'fullscreen',
   },
   tags: ["autodocs"],
 };
