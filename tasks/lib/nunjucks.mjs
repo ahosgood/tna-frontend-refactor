@@ -1,10 +1,4 @@
 import nunjucks from "nunjucks";
-import path from "path";
-import fs from "fs";
-
-// require.extensions[".njk"] = function (module, filename) {
-//   module.exports = fs.readFileSync(filename, "utf8");
-// };
 
 nunjucks.configure("src");
 

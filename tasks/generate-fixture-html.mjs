@@ -2,8 +2,6 @@ import { globSync } from "glob";
 import fs from "fs";
 import { renderNunjucks } from "./lib/nunjucks.mjs";
 
-const fsPromises = fs.promises;
-
 const componentsDirectory = "src/nationalarchives/components/";
 const componentFixturesFile = "/fixtures.json";
 const fixturesOutputDirectory = "fixtures-html";
@@ -25,7 +23,7 @@ components.forEach(async (component) => {
     import(`../${componentsDirectory}${component}${componentFixturesFile}`, {
       with: { type: "json" },
     }),
-    fsPromises.readFile(`${componentsDirectory}${component}/template.njk`, {
+    fs.promises.readFile(`${componentsDirectory}${component}/template.njk`, {
       encoding: "utf8",
     }),
   ]).then(([componentFixtures, componentNunjucks]) => {

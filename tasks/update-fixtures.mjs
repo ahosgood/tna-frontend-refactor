@@ -2,34 +2,27 @@ import { globSync } from "glob";
 import fs from "fs";
 import nunjucks from "nunjucks";
 
-const fsPromises = fs.promises;
-
 nunjucks.configure("src");
 
-const componentsDirectory = "src/nationalarchives/components/";
+const componentsDirectory = "nationalarchives/components/";
 const componentFixturesFile = "/fixtures.json";
 const components = globSync(
-  `${componentsDirectory}*${componentFixturesFile}`,
+  `src/${componentsDirectory}*${componentFixturesFile}`,
 ).map((componentFixtureFile) =>
   componentFixtureFile
-    .replace(new RegExp(`^${componentsDirectory}`), "")
+    .replace(new RegExp(`^src/${componentsDirectory}`), "")
     .replace(new RegExp(`${componentFixturesFile}$`), ""),
 );
 await components.forEach(async (component) => {
-  await Promise.all([
-    import(`../${componentsDirectory}${component}${componentFixturesFile}`, {
+    import(`../src/${componentsDirectory}${component}${componentFixturesFile}`, {
       with: { type: "json" },
-    }),
-    fsPromises.readFile(`${componentsDirectory}${component}/template.njk`, {
-      encoding: "utf8",
-    }),
-  ]).then(([componentFixtures, componentNunjucks]) => {
+    }).then((componentFixtures) => {
     const newComponentFixtures = {
       ...componentFixtures.default,
       fixtures: componentFixtures.default.fixtures.map((fixture) => ({
         ...fixture,
         html: nunjucks
-          .renderString(componentNunjucks, {
+          .render(`${componentsDirectory}${component}/template.njk`, {
             params: fixture.options,
           })
           .trim()
@@ -50,7 +43,7 @@ await components.forEach(async (component) => {
 
     if (allFixtureDifferences) {
       fs.writeFile(
-        `${componentsDirectory}${component}${componentFixturesFile}`,
+        `src/${componentsDirectory}${component}${componentFixturesFile}`,
         `${JSON.stringify(newComponentFixtures, null, 2).trim()}\n`,
         (err) => {
           if (err) throw err;
@@ -63,41 +56,42 @@ await components.forEach(async (component) => {
   });
 });
 
-// TODO
-// const templatesDirectory = "src/nationalarchives/templates/";
-// const templateFixturesFile = `${templatesDirectory}fixtures.json`;
-// const templateFixtures = require(`../${templateFixturesFile}`);
-// const newTemplateFixtures = {
-//   ...templateFixtures,
-//   fixtures: templateFixtures.fixtures.map((fixture) => ({
-//     ...fixture,
-//     html: nunjucks
-//       .renderString(
-//         require(`../${templatesDirectory}${fixture.template}`),
-//         fixture.options,
-//       )
-//       .trim()
-//       .replace(/>\n\s*/g, ">")
-//       .replace(/\n\s*</g, "<"),
-//   })),
-// };
-// const allFixtureDifferences = newTemplateFixtures.fixtures.reduce(
-//   (differences, fixture) =>
-//     fixture.html !==
-//     templateFixtures.fixtures.find((f) => f.name === fixture.name)?.html
-//       ? differences + 1
-//       : differences,
-//   0,
-// );
-// if (allFixtureDifferences) {
-//   fs.writeFile(
-//     templateFixturesFile,
-//     `${JSON.stringify(newTemplateFixtures, null, 2).trim()}\n`,
-//     (err) => {
-//       if (err) throw err;
-//       console.log(
-//         `${allFixtureDifferences} template fixture(s) updated successfully`,
-//       );
-//     },
-//   );
-// }
+const templatesDirectory = "nationalarchives/templates/";
+const templateFixturesFile = `../src/${templatesDirectory}fixtures.json`;
+await import(templateFixturesFile, {
+  with: { type: "json" },
+}).then(async (templateFixtures) => {
+  const newTemplateFixtures = {
+    ...templateFixtures.default,
+    fixtures: templateFixtures.default.fixtures.map((fixture) => ({
+      ...fixture,
+      html: nunjucks
+        .render(`${templatesDirectory}${fixture.template}`, fixture.options)
+        .trim()
+        .replace(/>\n\s*/g, ">")
+        .replace(/\n\s*</g, "<"),
+    })),
+  };
+  const allFixtureDifferences = newTemplateFixtures.fixtures.reduce(
+    (differences, fixture) =>
+      fixture.html !==
+      templateFixtures.default.fixtures.find((f) => f.name === fixture.name)
+        ?.html
+        ? differences + 1
+        : differences,
+    0,
+  );
+
+  if (allFixtureDifferences) {
+    fs.writeFile(
+      `src/${templateFixturesFile}`,
+      `${JSON.stringify(newTemplateFixtures, null, 2).trim()}\n`,
+      (err) => {
+        if (err) throw err;
+        console.log(
+          `${allFixtureDifferences} template fixture(s) updated successfully`,
+        );
+      },
+    );
+  }
+});
