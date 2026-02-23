@@ -190,7 +190,7 @@ checkExists.forEach((checkFile) => {
   } catch (err) {
     fail(err);
     process.exitCode = 1;
-    throw new Error("File structure test failed");
+    throw new Error("File structure test failed", err);
   }
 });
 

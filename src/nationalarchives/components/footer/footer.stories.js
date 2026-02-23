@@ -54,6 +54,9 @@ export const ThemeSelector = {
     (Story) => {
       const cookies = new Cookies({ secure: false, noInit: true });
       cookies.acceptPolicy("settings");
+      console.log(cookies);
+      console.log(cookies.all);
+      console.log(cookies.isPolicyAccepted("settings"));
       return Story();
     },
   ],
@@ -67,19 +70,19 @@ export const ThemeSelector = {
     await expect(themeLightButton).toBeVisible();
     await expect(darkLightButton).toBeVisible();
 
-    document.cookie.replace(/(?<=^|;).+?(?==|;|$)/g, (name) =>
-      location.hostname
-        .split(".")
-        .reverse()
-        .reduce(
-          (domain) => (
-            (domain = domain.replace(/^\.?[^.]+/, "")),
-            (document.cookie = `${name}=;max-age=0;path=/;domain=${domain}`),
-            domain
-          ),
-          location.hostname,
-        ),
-    );
+    // document.cookie.replace(/(?<=^|;).+?(?==|;|$)/g, (name) =>
+    //   location.hostname
+    //     .split(".")
+    //     .reverse()
+    //     .reduce(
+    //       (domain) => (
+    //         (domain = domain.replace(/^\.?[^.]+/, "")),
+    //         (document.cookie = `${name}=;max-age=0;path=/;domain=${domain}`),
+    //         domain
+    //       ),
+    //       location.hostname,
+    //     ),
+    // );
   },
 };
 
